@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para la isntalacion seguir pasos descriptos en:
 
-Things you may want to cover:
+https://www.youtube.com/watch?v=rg9DCX33IDY&list=PLBnuWio6_OZD3pMycSjzDK5BvW3m28_IL&index=1
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+* Ruby version: ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [arm64-darwin21]
+* Rails version : Rails 7.1.2
 
-* Database creation
+* System dependencies: Postgres, Yarn & Node
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
