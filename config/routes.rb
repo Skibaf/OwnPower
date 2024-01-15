@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to:  'main#home'
   get '/about', to: 'main#about'
   get '/home', to: 'main#home'

@@ -1,0 +1,21 @@
+
+<nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+   <div class="container">
+    
+      <ul class="navbar-nav">
+          <%= link_to "Reservar", about_path, class:"nav-link" %>
+          <%= link_to "Mis reservas", about_path, class:"nav-link" %>
+          <%= link_to "Mis Clases ", about_path, class:"nav-link" %>
+          <%= link_to "Admin Panel", about_path, class:"nav-link" %>
+
+        <% if current_user %>
+          <li class="nav-item"> <%= link_to "Editar profile", edit_user_registration_path, class: "nav-link" %></li>
+          <li class="nav-item"> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-small btn-primary mx-2" %></li>
+        <% else %>
+          <li class="nav-item"> <%= link_to "Registrarse", new_user_registration_path, class: "nav-link"  %></li>
+          <li class="nav-item"> <%= link_to "Sign In", new_user_session_path, class: "nav-link"  %></li>
+        <% end %>
+      </ul>
+    </div>
+
+</nav>
