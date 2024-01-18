@@ -1,13 +1,15 @@
-<nav class="navbar bg-body-tertiary fixed-top">
+<nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">OwnPower</a>
-    <% if current_user %>
-      <ul class="nav-item"> <%= link_to "Editar profile", edit_user_registration_path, class: "nav-link" %></ul>
-      <ul  class="nav-item"> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-small btn-primary mx-2" %></ul>
-    <% else %>
-      <ul class="nav-item"> <%= link_to "Registrarse", new_user_registration_path, class: "nav-link"  %></ul>
-      <ul class="nav-item"> <%= link_to "Sign In", new_user_session_path, class: "nav-link"  %></ul>
-    <% end %>
+    <a class="navbar-brand" href="/">OwnPower</a>
+    
+       <% if current_user %>
+        <ul class="nav-item"> <%= link_to "Editar profile", edit_user_registration_path, class: "nav-link" %></ul>
+        <ul  class="nav-item"> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-small btn-warning mx-2" %></ul>
+         <% else %>
+           <ul class="nav-item"> <%= link_to "Registrarse", new_user_registration_path, class: "nav-link"  %></ul>
+           <ul class="nav-item"> <%= link_to "Sign In", new_user_session_path, class: "nav-link"  %></ul>
+       <% end %>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
