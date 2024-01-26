@@ -1,45 +1,32 @@
-<nav class="navbar bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
   <div class="container-fluid">
-    
-       <%= image_tag 'logo-no-background', style: 'height:13%; width:13%' %>
-    
-       <% if current_user %>
-        <ul class="nav-item"> <%= link_to "Editar profile", edit_user_registration_path, class: "nav-link" %></ul>
-        <ul  class="nav-item"> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-small btn-warning mx-2" %></ul>
-         <% else %>
-           <ul class="nav-item"> <%= link_to "Registrarse", new_user_registration_path, class: "nav-link"  %></ul>
-           <ul class="nav-item"> <%= link_to "Sign In", new_user_session_path, class: "nav-link"  %></ul>
-       <% end %>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/"> <img src="../images/logo-no-background.png" alt="logo" style= "width: 100px; height:28px" ></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">OwnPower Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Reservar", about_path, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Mis reservas", about_path, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Mis Clases", about_path, class:"nav-link" %>
-          </li>
-          <% if current_user&.admin?  %>
-            <li class="nav-item">
-              <%= link_to "Admin Panel", about_path, class:"nav-link" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Mis Clases</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/ ">Mis Cursos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if current_user %>
+           <ul class="nav-item"> <%= link_to "Editar profile", edit_user_registration_path, class: "btn btn-outline-warning" %></ul>
+           <ul  class="nav-item"> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-small btn-warning" %></ul>
+       <% else %>
+           <ul class="nav-but"> <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-outline-warning"  %></ul>
+           <ul class="nav-but"> <%= link_to "Sign In", new_user_session_path, class: "btn btn-small btn-warning"  %> </ul>
+        <% end %>
+        <% if current_user&.admin?  %>
+          <ul class="nav-but"> <%= link_to "Admin Panel", about_path, class: "btn btn-small btn-info"  %></ul>
+        <% end %>
+      </ul>
+    </div>
     </div>
   </div>
-</nav>
+  </nav>
+  </div>
