@@ -2,8 +2,49 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+
+
+User.create(username:'susi@gmail.com',
+             email:'susi@gmail.com', 
+              password:'123456',
+             password_confirmation:'123456', 
+             fisrt_name:'Su', 
+             last_name:'Kilo', 
+             role:User.roles[:user])
+
+
+User.create(username:'julif@gmail.com',
+            email:'julif@gmail.com', 
+              password:'123456',
+             password_confirmation:'123456', 
+             fisrt_name:'July', 
+             last_name:'Ferraro', 
+             role:User.roles[:trainer])
+
+User.create(username:'peterc@gmail.com',
+             email:'peterc@gmail.com', 
+             password:'123456',
+            password_confirmation:'123456', 
+            fisrt_name:'Peter', 
+            last_name:'Cal', 
+            role:User.roles[:trainer])
+
+User.create(username:'skiba_flo@gmail.com',
+             email:'skiba_flo@gmail.com', 
+             password:'123456',
+            password_confirmation:'123456', 
+            fisrt_name:'Flo', 
+            last_name:'CSki', 
+            role:User.roles[:admin])
+
+ User.create(username:'melii@gmail.com',
+             email:'melii@gmail.com', 
+              password:'123456',
+             password_confirmation:'123456', 
+             fisrt_name:'Melisa', 
+             last_name:'Gorsh', 
+             role:User.roles[:user])
+
+Category.create(title:'Funcional', description: 'Diseñado para mejorar en general el estado fisico ')
+Category.create(title:'Running', description: 'Preparacion de carreras ')
+Category.create(title:'Recove', description: 'Preparado para volver .... ')
