@@ -1,0 +1,21 @@
+/*!
+ * changes by me
+ */
+ h11 {
+    color: green;
+  }
+  
+  .c-item{
+  height: 600px;
+  
+  }
+  .c-img{
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  
+  }
+  
+  /*!
+   * end changes by me
+   */
