@@ -16,6 +16,16 @@
   
   }
   
+  body{
+  min-height: 100vh;
+
+  }
+  .sticky-footer{
+    position: sticky;
+    top: 100%;
+
+  }
+  
   /*!
    * end changes by me
    */
