@@ -1,2 +1,27 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+
+
+<div class="flex-container">
+<div class="container-fluid">
+    <a class="navbar-brand" href="/"> <img src="../images/logo-no-background.svg" alt="logo" style= "width: 120px; height:40px" ></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<h4>Admin Panel</h4>
+
+
+<ul>
+   <a class="nav-link active" href="/ ">Home</a>
+</ul>
+<ul>
+   <%= link_to 'Usuarios', admin_users_path %>
+</ul>
+<ul>
+   <%= link_to 'Categorias', categories_path %>
+</ul>
+
+<ul>
+   <%= link_to 'Cursos', lessons_path %>
+</ul>
+</div>

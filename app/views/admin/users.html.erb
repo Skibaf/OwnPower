@@ -1,13 +1,9 @@
-
 <p style="color: green"><%= notice %></p>
 <p style="color: green"><%= notice %></p>
 <div class="container">
-  <h1>Listado de Categorias</h1>
+  <h1>Listado de usuarios</h1>
   
   <div class="container">
-    <div class="">
-      <%= link_to "New category", new_category_path, class: "btn btn-outline-dark" %>
-    </div>
       
       <div class="indexcontainer">
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
@@ -15,21 +11,26 @@
             <thead>
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Titulo</th>
-                <th scope="col">Descripccion</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Fecha de creacion</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <div id="categories">
-                  <% @categories.each do |category| %>
+                <div id="lessons">
+                  <% @users.each do |user| %>
                     <tr>
-                      <td><%= category.id %></td>
-                      <td><%= category.title %></td>
-                      <td><%= category.description%></td>
-                      <td><%= link_to "Show this category", category, class: "btn btn-outline-dark" %></td>
-                      
+                      <td><%= user.id %></td>
+                      <td><%= user.fisrt_name %></td>
+                      <td><%= user.last_name %></td>
+                      <td><%= user.username %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.role %></td>
+                      <td><%= user.created_at %></td>
                     <% end %>
                   </div>
                 </tr>
@@ -38,14 +39,9 @@
           </div>
         </div>
     </div>
-    <div class="">
     <ul class="form-but">
             <%= link_to "Back", :back, class:"btn btn-outline-dark" %>
         </ul>
 
    </div>
-
-</div>
-
- 
-
+ </div>
