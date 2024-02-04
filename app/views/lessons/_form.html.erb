@@ -1,0 +1,56 @@
+<%= form_with(model: lesson) do |form| %>
+  <% if lesson.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+        <% lesson.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :coach_id, style: "display: block" %>
+    <%= collection_select( :lesson, :coach_id, User.all.where(role: "coach"), :id, :email, {}, { :multiple => false } ) %>
+
+    
+  </div>
+
+  <div>
+    <%= form.label :category_id, style: "display: block" %>
+    <%= collection_select( :lesson, :category_id, Category.all, :id, :title, {}, { :multiple => false } ) %>
+
+  </div>
+
+  <div>
+    <%= form.label :precio, style: "display: block" %>
+    <%= form.number_field :precio %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.select :status, Lesson.statuses.keys.map { |w| [w.humanize, w] } %>
+    
+  </div>
+
+  <div>
+    <%= form.label :dia, style: "display: block" %>
+    <%= form.date_field :dia %>
+  </div>
+
+  <div>
+    <%= form.label :inicio, style: "display: block" %>
+    <%= form.time_field :inicio %>
+  </div>
+
+  <div>
+    <%= form.label :fin, style: "display: block" %>
+    <%= form.time_field :fin %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

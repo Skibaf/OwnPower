@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_27_182626) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_01_003826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_182626) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.bigint "coach_id", null: false
+    t.bigint "category_id", null: false
+    t.integer "precio"
+    t.integer "status", default: 0
+    t.date "dia"
+    t.time "inicio"
+    t.time "fin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_lessons_on_category_id"
+    t.index ["coach_id"], name: "index_lessons_on_coach_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +53,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_182626) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "lessons", "categories"
+  add_foreign_key "lessons", "users", column: "coach_id"
 end

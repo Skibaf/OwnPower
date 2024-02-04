@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: lessons
+#
+#  id          :bigint           not null, primary key
+#  coach_id    :bigint           not null
+#  category_id :bigint           not null
+#  precio      :integer
+#  status      :integer          default(0)
+#  dia         :date
+#  inicio      :time
+#  fin         :time
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  coach: one
+  category: one
+  precio: 1
+  status: 1
+  dia: 2024-01-31
+  inicio: 2024-01-31 21:38:26
+  fin: 2024-01-31 21:38:26
+
+two:
+  coach: two
+  category: two
+  precio: 1
+  status: 1
+  dia: 2024-01-31
+  inicio: 2024-01-31 21:38:26
+  fin: 2024-01-31 21:38:26

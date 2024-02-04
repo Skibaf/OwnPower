@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lessons
+  get 'admin/index'
   resources :categories
   devise_for :users
   root to:  'main#home'

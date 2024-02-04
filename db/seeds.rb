@@ -19,7 +19,7 @@ User.create(username:'julif@gmail.com',
              password_confirmation:'123456', 
              fisrt_name:'July', 
              last_name:'Ferraro', 
-             role:User.roles[:trainer])
+             role:User.roles[:coach])
 
 User.create(username:'peterc@gmail.com',
              email:'peterc@gmail.com', 
@@ -27,7 +27,7 @@ User.create(username:'peterc@gmail.com',
             password_confirmation:'123456', 
             fisrt_name:'Peter', 
             last_name:'Cal', 
-            role:User.roles[:trainer])
+            role:User.roles[:coach])
 
 User.create(username:'skiba_flo@gmail.com',
              email:'skiba_flo@gmail.com', 
@@ -45,6 +45,6 @@ User.create(username:'skiba_flo@gmail.com',
              last_name:'Gorsh', 
              role:User.roles[:user])
 
-Category.create(title:'Funcional', description: 'Diseñado para mejorar en general el estado fisico ')
-Category.create(title:'Running', description: 'Preparacion de carreras ')
-Category.create(title:'Recove', description: 'Preparado para volver .... ')
+Category.create(title:'Funcional', description: 'Diseñado para mejorar en general el estado fisico ', status:Category.statuses[:activa])
+Category.create(title:'Running', description: 'Preparacion de carreras ', status:Category.statuses[:activa])
+Category.create(title:'Recove', description: 'Preparado para volver .... ', status:Category.statuses[:activa])

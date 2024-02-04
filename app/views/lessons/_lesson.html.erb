@@ -1,0 +1,30 @@
+<div id="<%= dom_id lesson %>">
+  <p>
+    <strong>Coach:</strong>
+    <%= lesson.coach.email %>
+  </p>
+  <p>
+    <strong>Category:</strong>
+    <%= lesson.category.title %>
+  </p>
+  <p>
+    <strong>Precio:</strong>
+    <%= lesson.precio %>
+  </p>
+  <p>
+    <strong>Status:</strong>
+    <%= lesson.status %>
+  </p>
+  <p>
+    <strong>Dia:</strong>
+    <%= lesson.dia %>
+  </p>
+  <p>
+    <strong>Inicio:</strong>
+    <%= lesson.inicio.strftime("%H:%M") %>
+  </p>
+  <p>
+    <strong>Fin:</strong>
+    <%= lesson.fin.strftime("%H:%M") %>
+  </p>
+</div>
