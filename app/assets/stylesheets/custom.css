@@ -1,6 +1,11 @@
 /*!
  * changes by me
  */
+
+ /*!
+ * Landing page
+ */
+ 
  h11 {
     color: green;
   }
@@ -25,9 +30,15 @@
     top: 100%;
 
   }
+
+
   
   /*!
-   * end changes by me
+   * end changes 
+   */
+
+   /*!
+   * changes login and refister page
    */
 
    .formContainer {
@@ -67,3 +78,8 @@
       margin: 5vh 20px;
     }
   }
+/*!
+  * end changes 
+*/
+  
+  
