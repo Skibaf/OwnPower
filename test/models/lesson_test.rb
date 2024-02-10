@@ -6,7 +6,7 @@
 #  coach_id    :bigint           not null
 #  category_id :bigint           not null
 #  precio      :integer
-#  status      :integer          default(0)
+#  status      :integer          default("disponible")
 #  dia         :date
 #  inicio      :time
 #  fin         :time

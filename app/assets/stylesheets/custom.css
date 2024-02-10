@@ -29,3 +29,41 @@
   /*!
    * end changes by me
    */
+
+   .formContainer {
+    max-width:5000px;
+    box-shadow : 4px 8px 16px #d7d7d7;
+    margin:0 auto;
+    padding:10px;
+    border-radius:0px 0px 4px 4px;
+  }
+  input {
+    box-shadow:none !important;
+    outline:none;
+  }
+  #btnHolder {
+    margin:0px -20px -20px -20px;
+  }
+  #btnHolder .btn {
+    border-radius:0px 0px 4px 4px !important;
+    height:60px;
+  }
+  @media screen and (max-width:766px){
+    .centerOnMobile {
+      margin : 20vh auto
+    }
+  }
+  @media screen and (min-width:767px){
+    #mainBgn {
+      background : url('/images/c2.jpg') no-repeat;
+      background-size:cover;
+      background-position:center;
+      height:100vh;
+      width:100%;
+    }
+    #mainContainer {
+      box-shadow : 2px 4px 12px rgba(0,0,0,0.4);
+      height:105vh;
+      margin: 5vh 20px;
+    }
+  }

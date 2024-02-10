@@ -1,20 +1,29 @@
-<div class="container py-3">
-  <h2 class="p-2 h4 text-center"><i class="fas fa-lock me-2"></i> Login</h2>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        
-      <div class="d-flex flex-column justify-content-center align-items-center">
-           <div class="form-group mb-3 w-50">
+<div id="mainContainer">
+  <div class="">
+  <div class="row align-items-center">
+    <div class="col-lg-6 col-md-6 col-xs-12 d-none d-lg-block d-md-block">
+      <div id="mainBgn"></div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12">
+      <div class="p-4 centerOnMobile" >
+        <div class="formContainer">
+          <h2 class="p-2 h4 text-center"><i class="fas fa-lock me-2"></i> Volviste!</h2>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <div class="d-flex flex-column justify-content-center align-items-center">
+           <div class="form-group mb-3 w-75">
                <%= f.label :username %><br />
                <%= f.email_field :username, class:"form-control", placeholder:"Username", autofocus: true, autocomplete: "username" %>
            </div>
            <br/>
-           <div class="form-group mb-3 w-50">
+           <div class="form-group mb-3 w-75">
                <%= f.label :password %><br />
                <%= f.password_field :password, class:"form-control", placeholder:"Password", autocomplete: "current-password" %>
            </div>
           <br/>
           <% if devise_mapping.rememberable? %>
-            <div class="form-group mb-3 w-50">
+            <div class="form-group mb-3 w-75">
                 <%= f.check_box :remember_me , class:"form-check-input" %>
                 <%= f.label :remember_me %>
             </div>
@@ -29,4 +38,12 @@
           <%= render "devise/shared/links" %>
         </div>
       </div>
-</div>
+        
+      </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
