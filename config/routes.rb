@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
-  get 'coach/index'
   
-  devise_for :users
   root to:  'main#home'
-
+  devise_for :users
+  
   get '/about', to: 'main#about'
   get '/home', to: 'main#home'
   
+  resources :lessons
+  resources :categories
 
   #Admin
   match 'admin/users',   to: 'admin#users',   via: 'get'
-  resources :lessons
   get 'admin/index'
-  resources :categories
-
+  
   #users
   get 'user/index'
   get 'user/reserve'
+  get 'cart', to: 'cart#show'
+  post 'cart/add'
+  post 'cart/remove'
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

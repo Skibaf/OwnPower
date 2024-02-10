@@ -1,0 +1,20 @@
+<% @cart.orderables.each do |orderable| %>
+  <% lesson = orderable.lesson %>
+  <div id="<%= "cart-#{lesson.id}" %>">
+    <div style="display:flex;justify-content:space-between;margin: 0em 5em;">
+      <strong>Category:</strong>
+      <%= lesson.category.title %>
+      <strong>Profesor:</strong>
+      <%= lesson.coach.email %>
+      <strong>Precio:</strong>
+      <%= lesson.precio %>
+      
+      <%= form_with(url: cart_remove_path) do |f| %>
+        <%= f.hidden_field :id, value: orderable.id %>
+        <%= f.submit "Eliminar del carrito" %>
+      <% end %>
+      <strong>Total:</strong>
+      <%= orderable.total %>
+    </div>
+  </div>
+<% end %>

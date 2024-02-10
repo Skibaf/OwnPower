@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_01_003826) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_10_135726) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -36,6 +41,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_003826) do
     t.index ["coach_id"], name: "index_lessons_on_coach_id"
   end
 
+  create_table "orderables", force: :cascade do |t|
+    t.bigint "lesson_id", null: false
+    t.bigint "cart_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orderables_on_cart_id"
+    t.index ["lesson_id"], name: "index_orderables_on_lesson_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,4 +70,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_003826) do
 
   add_foreign_key "lessons", "categories"
   add_foreign_key "lessons", "users", column: "coach_id"
+  add_foreign_key "orderables", "carts"
+  add_foreign_key "orderables", "lessons"
 end
