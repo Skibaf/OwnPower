@@ -21,6 +21,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :lessons
+  has_many :payments
+  
   enum role: [:user, :coach, :admin]
   
   #reglas de negocio

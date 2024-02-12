@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reservations/index'
+  get 'reservations/create'
   
   
   root to:  'main#home'
