@@ -12,7 +12,7 @@
         <div class="carousel-caption top-0 mt-5 d-none d-md-block">
           <h1 class="mt-5 display-1 fw-bolder text capitalize ">Empieza hoy!</h1>
           <br/>
-          <%= link_to "Registrate", new_user_registration_path, class: "btn btn-lg btn-primary rounded-pill" %>
+          <%= link_to "Registrate", new_user_registration_path, class: "btn btn-lg btn-warning rounded-pill" %>
         </div>
       </div>
       <div class="carousel-item  c-item">
@@ -20,7 +20,7 @@
         <div class="carousel-caption top-0 mt-5 d-none d-md-block">
           <h1 class="mt-5 display-1 fw-bolder text capitalize ">Hoy puede ser</h1>
           <br/>
-          <%= link_to "Reservar", user_reserve_path, class: "btn btn-lg btn-primary rounded-pill" %>
+          <%= link_to "Reservar", user_reserve_path, class: "btn btn-lg btn-warning rounded-pill" %>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -46,7 +46,8 @@
             </div>
             <h5 class="card-title">Como trabajamos</h5>
             <p class="card-text">Somos un grupo apasionado por el movimiento. Nuestro objetivo es lograr los tuyos.</p>
-            <button type="button" class="btn btn-primary" data-mdb-ripple-init>+ Info</button>
+            <a href="/about" class="btn btn-warning" role="button" data-mdb-ripple-init>+ Info</a>
+
           </div>
         </div>
       </div>
@@ -58,7 +59,7 @@
             </div>
             <h5 class="card-title">Los Profes</h5>
             <p class="card-text">Aqui puedes ver quienes formarmos parte de esta comunidad asi como cuales son nuestras areas de expertise.</p>
-            <button type="button" class="btn btn-primary" data-mdb-ripple-init>+ Info</button>
+            <a href="/about" class="btn btn-warning" role="button" data-mdb-ripple-init>+ Info</a>
           </div>
         </div>
       </div>
@@ -70,7 +71,7 @@
             </div>
             <h5 class="card-title">Clases</h5>
             <p class="card-text">Ofrecemos varios tipos de servicios dependiendo del profesor y la epoca del año.</p>
-            <button type="button" class="btn btn-primary" data-mdb-ripple-init>+ info</button>
+            <a href="/about" class="btn btn-warning" role="button" data-mdb-ripple-init>+ Info</a>
           </div>
         </div>
       </div>
@@ -143,7 +144,7 @@
     <textarea class="form-control" id="comenatarios" row="3"  placeholder="Escribe tu consulta " required></textarea>
   </div>
   <div class="col-md-12">
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-warning">Enviar</button>
   </div>
 </form>
 </div>

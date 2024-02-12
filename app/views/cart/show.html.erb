@@ -5,6 +5,7 @@
     <%= render "cart/orderables" %>
      <p>cantidad: <%= @cart.orderables.count %></p>
       <p>Total: <%= @cart.total %></p>
+      <%= button_to 'Pagar la compra', payments_create_path, 'data-turbo': false, class: "mt-3 rounded-lg p-2 bg-blue-600 text-white font-medium cursor-pointer" %>
   <% else %>
     <p>El carrito esta vacio</p>
   <% end %>

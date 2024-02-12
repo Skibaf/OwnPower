@@ -24,6 +24,7 @@ class Lesson < ApplicationRecord
   #Validaciones de reglas de negocio
   validates :precio, numericality: { greated_than: 0}
   validates :status, presence: true
+  validates :coach, presence: true
   validate :date_cannot_be_in_the_past
     #validar hora final es despues de inicio
   validates :fin, comparison: { greater_than: :inicio }
@@ -42,4 +43,23 @@ class Lesson < ApplicationRecord
       errors.add(:dia, "No puede estar en el pasado")
     end
   end
+
+  def full_description
+    full="#{lesson.id} - #{lesson.coach} - #{lesson.dia} - #{lesson.inicio}"
+    return full
+  end
+   
+  
+  
+  def to_preference_item
+    {
+      id: id,
+      title: 'reserva',
+      description: self.full_description,
+      unit_price: precio,
+      quantity: 1
+    }
+  end
+
+
 end

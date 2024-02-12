@@ -1,0 +1,11 @@
+<script src="https://www.mercadopago.com/v2/security.js" view=""></script>
+
+<div class="w-full">
+  <p class="text-center bg-green-100 text-green-800 font-medium rounded">Payment success</p>
+  <div class="p-6 font-medium font-mono">
+    <p>payment_id: <%= params[:collection_id] %></p>
+    <p>preference_id: <%= params[:preference_id] %></p>
+    <p>payment_type: <%= params[:payment_type] %></p>
+    <p>external_reference: <%= params[:external_reference] %></p>
+  </div>
+</div>

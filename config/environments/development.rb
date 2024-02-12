@@ -73,4 +73,10 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+   
+  # NGROK url
+#Rails.application.routes.default_url_options = { protocol: 'https', host: ENV['HOST'] }
+  
+  Rails.application.config.hosts << "82cf-181-31-69-248.ngrok-free.app"
+
 end

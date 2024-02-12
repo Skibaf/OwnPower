@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
   root to:  'main#home'
   devise_for :users
   
@@ -11,7 +12,11 @@ Rails.application.routes.draw do
 
   #Admin
   match 'admin/users',   to: 'admin#users',   via: 'get'
-  get 'admin/index'
+  match 'admin/index',   to: 'admin#index',   via: 'get'
+
+  #profesores
+  match 'coach/index',   to: 'coach#index',   via: 'get'
+
   
   #users
   get 'user/index'
@@ -20,6 +25,14 @@ Rails.application.routes.draw do
   post 'cart/add'
   post 'cart/remove'
 
+  #payments
+  post 'payments/create'
+  get 'payments/success'
+  get 'payments/pending'
+  get 'payments/failure'
+  post 'payments/notification'
+  get 'payments/index'
+  
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

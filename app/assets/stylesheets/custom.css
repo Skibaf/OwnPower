@@ -69,12 +69,29 @@
       background : url('/images/c2.jpg') no-repeat;
       background-size:cover;
       background-position:center;
-      height:100vh;
+      height:90vh;
       width:100%;
+      margin: 5vh 20px;
     }
     #mainContainer {
       box-shadow : 2px 4px 12px rgba(0,0,0,0.4);
-      height:105vh;
+      height:98vh;
+      margin: 2vh 10px;
+    }
+  }
+
+  @media screen and (min-width:767px){
+    #mainBgnlogin {
+      background : url('/images/c2.jpg') no-repeat;
+      background-size:cover;
+      background-position:center;
+      height:75vh;
+      width:100%;
+      margin: 5vh 20px;
+    }
+    #mainContainerlogin {
+      box-shadow : 2px 4px 12px rgba(0,0,0,0.4);
+      height:80vh;
       margin: 5vh 20px;
     }
   }
