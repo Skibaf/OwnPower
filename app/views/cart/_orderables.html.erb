@@ -2,6 +2,7 @@
 <table class="table table-borderless table-sm table-responsive">
   <thead>
     <tr>
+      <th>codigo</th>
       <th>Categoria</th>
       <th>Profesor</th>
       <th>Precio</th>
@@ -13,6 +14,7 @@
     <% @cart.orderables.each do |orderable| %>
       <% lesson = orderable.lesson %>
       <tr>
+        <td><%= lesson.id %></td>
         <td><%= lesson.category.title %></td>
         <td><%= lesson.coach.email %></td>
         <td><%= lesson.precio %></td>

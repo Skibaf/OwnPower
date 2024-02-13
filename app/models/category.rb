@@ -10,7 +10,7 @@
 #  status      :integer          default("activa")
 #
 class Category < ApplicationRecord
-   
+    has_many :lessons
     validates :title, presence: true
     validates :status, presence: true
     enum status: [:activa, :inactivo]

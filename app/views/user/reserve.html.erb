@@ -1,76 +1,39 @@
 
 <div class="container mt-3">
-  <div class="card shadow p-2 mb-5 bg-white rounded">
+   <div class="card shadow p-2 mb-5 bg-white rounded">
     <%= render partial: "cart/cart" if @render_cart %>
    </div>
-  <div class="row">
+   <div class="row">
      <div class="col-3">
          <div class="card shadow p-3">
               <p class="bold-text">Filtros</p>
               <hr class="my-1">
-              
-                   <div class="mb-3">
-                      <label for="fecha" class="form-label">Seleccionar Fecha:</label>
-                      <input type="date" class="form-control" id="fecha">
-                    </div>
+                   <%= form_with(url: buscar_lessons_lessons_path, method: 'get', remote: true, id: 'search_form') do |form| %>
                     <div class="mb-3">
-                        <label for="text" class="form-label">Coach:</label>
-                        <%= collection_select(:lesson, :coach_id, User.all.where(role: "coach"), :id, :email, {}, { :multiple => false, :class => "form-control" }) %>
+                           <%= form.label :dia, 'Día' %>
+                           <%= form.date_field :dia, class: 'form-control' %>
                     </div>
+                    
+                    <div class="mb-3">
+                    <%= form.submit 'Buscar', class: 'btn btn-primary' %>
+                     </div>
+                    <% end %>
             </div>
-      </div>
+    </div>
       <div class="col-9">
-              <div class="indexcontainer">
-              <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Profesor</th>
-                      <th scope="col">Categoria</th>
-                      <th scope="col">Precio</th>
-                      <th scope="col">Dia</th>
-                      <th scope="col">Inicio</th>
-                      <th scope="col">Fin</th>
-                      <th scope="col"></th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <div id="lessons">
-                        <% @lessons.upcoming.disponible.each do |lesson| %>
-                          <tr>
-                            <td><%= lesson.id %></td>
-                            <td><%= lesson.coach.email %></td>
-                            <td><%= lesson.category.title %></td>
-                            <td><%= lesson.precio %></td>
-                            <td><%= lesson.dia %></td>
-                            <td><%= lesson.inicio.strftime("%H:%M") %></td>
-                            <td><%= lesson.fin.strftime("%H:%M") %></td>
-                            <td>
-                            <%= form_with(url: cart_add_path) do |f| %>
-                                      <%= f.hidden_field :id, value: lesson.id %>
-                                      <%= f.hidden_field :quantity, value: '1' %>
-                                     <%= f.button(type: 'submit', class: 'btn btn-outline-dark btn-sm') do %>
-                                         <i class="bi bi-cart"></i>
-                                        <% end %>
-
-
-                            <% end %>
-                          <% end %>
-                        </div>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+          <div class="indexcontainer">
+              <div class="row">
+                 <div id="lessons_table">
+                     <%= render partial: 'lessons_table', locals: { lessons: @lessons } %>
+                 </div>
               </div>
-          </div>
- </div>
- <div class="">
-  <ul class="form-but">
-            <%= link_to "Back", :back, class:"btn btn-medium btn-outline-secondary rounded-pill float-end" %>
-        </ul>
- </div>
+            </div>
+        </div>
+      <div class="">
+         <ul class="form-but">
+                <%= link_to "Back", :back, class:"btn btn-medium btn-outline-secondary rounded-pill float-end" %>
+            </ul>
+      </div>
+  </div>
 </div>
 

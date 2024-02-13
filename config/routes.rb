@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'reservations/index'
-  get 'reservations/create'
-  
-  
+
   root to:  'main#home'
   devise_for :users
   
@@ -27,6 +24,14 @@ Rails.application.routes.draw do
   post 'cart/add'
   post 'cart/remove'
 
+ 
+  resources :lessons do
+    collection do
+      get 'buscar_lessons'
+    end
+  end
+
+
   #payments
   post 'payments/create'
   get 'payments/success'
@@ -34,6 +39,10 @@ Rails.application.routes.draw do
   get 'payments/failure'
   post 'payments/notification'
   get 'payments/index'
+
+  #Reservation (pagadas)
+  get 'reservations/index'
+  get 'reservations/create'
   
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

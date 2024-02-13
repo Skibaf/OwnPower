@@ -12,5 +12,11 @@ class UserController < ApplicationController
   def reserve
     @render_cart = true
     @lessons = Lesson.all
+    
   end
+   
+
+  
+
+  
 end

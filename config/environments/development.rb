@@ -1,12 +1,18 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  
+   # NGROK url
+#Rails.application.routes.default_url_options = { protocol: 'https', host: ENV['HOST'] }
+  #config.hosts << "82cf-181-31-69-248.ngrok-free.app"
+  config.hosts = nil
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.enable_reloading = true
+  
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -74,9 +80,6 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
    
-  # NGROK url
-#Rails.application.routes.default_url_options = { protocol: 'https', host: ENV['HOST'] }
-  
-  Rails.application.config.hosts << "82cf-181-31-69-248.ngrok-free.app"
+ 
 
 end

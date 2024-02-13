@@ -31,9 +31,13 @@ class Lesson < ApplicationRecord
   
   enum status: [:disponible, :reservada, :cancelada]
 
-
-  scope :upcoming, ->{ where('dia BETWEEN ? AND ?', Date.tomorrow, 30.days.from_now).where(status: :disponible) }
-  scope :disponible, ->{ where(status: :disponible) }
+  #defino opcione sde busqueda
+  #upcoming son los registros disponibles que estan en los proximos 30 dias 
+  scope :upcoming, ->{ where('dia BETWEEN ? AND ?', Date.tomorrow, 30.days.from_now)}
+  #disponible trae todo los que esta en esta condicion sin restriccion de fecha
+  scope :disponibles, ->{ where(status: :disponible) }
+  #devuelve las lecciones desde dia y por un perido de 30 en el futuro
+  
   
 
 

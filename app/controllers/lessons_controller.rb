@@ -3,7 +3,9 @@ class LessonsController < ApplicationController
 
   # GET /lessons or /lessons.json
   def index
-    @lessons = Lesson.all
+    @categories= Category.all
+    @users=User.all.where(role: "coach")
+    @lessons = Lesson.all.order(dia: :asc)
   end
 
   # GET /lessons/1 or /lessons/1.json
@@ -17,6 +19,22 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1/edit
   def edit
+  end
+
+  def buscar_lessons
+    dia = params[:dia]
+    
+
+    # Lógica para establecer los valores predeterminados si no se proporcionan
+    dia ||= Date.tomorrow
+    
+
+    @lessons = Lesson.por_dia(dia)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { render partial: 'user/lessons_table', locals: { lessons: @lessons } }
+    end
   end
 
   # POST /lessons or /lessons.json
@@ -56,6 +74,7 @@ class LessonsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
