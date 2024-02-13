@@ -2,7 +2,7 @@
   <% if @cart.orderables.count > 0 %>
     <%= render "cart/orderables" %>
      <div class="d-flex justify-content-end align-items-center">
-          <p class="me-3 fw-bold mb-0">Total: <%= @cart.total %></p>
+          <p class="me-3 fw-bold mb-0">Total ARS: <%= @cart.total %></p>
           <%= button_to 'Pagar la compra', payments_create_path, 'data-turbo': false, class: "btn btn-warning" %>
       </div>
      

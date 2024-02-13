@@ -1,12 +1,9 @@
 <p style="color: green"><%= notice %></p>
 <p style="color: green"><%= notice %></p>
 <div class="container">
-  <h1>Listado de usuarios</h1>
-  
+  <h4>Listado de usuarios</h4>
   <div class="container">
-      
-      <div class="indexcontainer">
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
+       <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
           <table class="table table-striped">
             <thead>
               <tr>
@@ -21,7 +18,7 @@
             </thead>
             <tbody>
               <tr>
-                <div id="lessons">
+                <div id="userspage">
                   <% @users.each do |user| %>
                     <tr>
                       <td><%= user.id %></td>
@@ -38,10 +35,4 @@
             </table>
           </div>
         </div>
-    </div>
-    <ul class="form-but">
-            <%= link_to "Back", :back, class:"btn btn-outline-dark" %>
-        </ul>
-
-   </div>
- </div>
+</div>
