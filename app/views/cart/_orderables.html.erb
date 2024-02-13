@@ -20,7 +20,9 @@
         <td>
           <%= form_with(url: cart_remove_path) do |f| %>
             <%= f.hidden_field :id, value: orderable.id %>
-            <%= f.submit "X", class: "btn btn-outline-dark btn-sm" %>
+            <%= f.button(type: 'submit', class: 'btn btn-outline-dark btn-sm') do %>
+                <i class="bi bi-trash"></i> <!-- Icono de Bootstrap para un bote de basura (puedes cambiarlo según tu preferencia) -->
+            <% end %>
           <% end %>
         </td>
       </tr>

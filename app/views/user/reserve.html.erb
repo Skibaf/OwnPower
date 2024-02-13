@@ -52,7 +52,9 @@
                             <%= form_with(url: cart_add_path) do |f| %>
                                       <%= f.hidden_field :id, value: lesson.id %>
                                       <%= f.hidden_field :quantity, value: '1' %>
-                                     <%= f.submit "Reservar", class: "btn btn-outline-dark" %>
+                                     <%= f.button(type: 'submit', class: 'btn btn-outline-dark btn-sm') do %>
+                                         <i class="bi bi-cart"></i>
+                                        <% end %>
 
 
                             <% end %>
