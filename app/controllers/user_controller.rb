@@ -6,13 +6,14 @@ class UserController < ApplicationController
     # falta modulo reservas
     @render_cart = true
     @mylessons = Lesson.all
+    
   
   end
 
   def reserve
     @render_cart = true
-    @users=User.all.where(role: "coach")
-    @lessons = Lesson.all.order(dia: :asc)
+    @query = Lesson.ransack(params[:q])
+    @lessons_res = @query.result.includes(:category, :coach).order(dia: :asc)
     
   end
    

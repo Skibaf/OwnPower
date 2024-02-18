@@ -1,0 +1,17 @@
+
+    <%= search_form_for @query, url: user_reserve_path, method: :get, class: 'd-flex' do |f| %>
+      <div class="form-group">
+        <div class="mb-3">
+          <%= f.label :dia %>
+          <%= f.date_field :dia_gteq, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :coach_email_cont, " Profesor:" %>
+          <%= f.text_field :coach_email_cont, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.submit class: "btn btn-warning" %>
+          <%= link_to "Reset", user_reserve_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    <% end %>

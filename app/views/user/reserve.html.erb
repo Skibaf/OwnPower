@@ -8,27 +8,55 @@
          <div class="card shadow p-3">
               <p class="bold-text">Filtros</p>
               <hr class="my-1">
-                   <%= form_with(url: buscar_lessons_lessons_path, method: 'get', remote: true, id: 'search_form') do |form| %>
-                    <div class="mb-3">
-                           <%= form.label :dia, 'Día' %>
-                           <%= form.date_field :dia, class: 'form-control' %>
-                    </div>
-                    
-                    <div class="mb-3">
-                    <%= form.submit 'Buscar', class: 'btn btn-primary' %>
-                     </div>
-                    <% end %>
+               <%= render "user/search_form", q:@query %>
             </div>
-    </div>
+     </div>
       <div class="col-9">
           <div class="indexcontainer">
-              <div class="row">
-                 <div id="lessons_table">
-                     <%= render partial: 'lessons_table', locals: { lessons: @lessons } %>
-                 </div>
-              </div>
-            </div>
-        </div>
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Profesor</th>
+                      <th scope="col">Categoria</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Dia</th>
+                      <th scope="col">Inicio</th>
+                      <th scope="col">Fin</th>
+                      <th scope="col"></th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <div id="lessons">
+                        <% @lessons_res.upcoming.disponibles.each do |lesson|  %>
+                          <tr>
+                            <td><%= lesson.id %></td>
+                            <td><%= lesson.coach.email %></td>
+                            <td><%= lesson.category.title %></td>
+                            <td><%= lesson.precio %></td>
+                            <td><%= lesson.dia %></td>
+                            <td><%= lesson.inicio.strftime("%H:%M") %></td>
+                            <td><%= lesson.fin.strftime("%H:%M") %></td>
+                            <td>
+                            <%= form_with(url: cart_add_path) do |f| %>
+                                      <%= f.hidden_field :id, value: lesson.id %>
+                                      <%= f.hidden_field :quantity, value: '1' %>
+                                      <%= f.button(type: 'submit', class: 'btn btn-outline-dark btn-sm') do %>
+                                         <i class="bi bi-cart"></i>
+                                        <% end %>
+                          <% end %>
+                          <% end %>
+                        </div>
+                      </tr>
+                    </tbody>
+         </table>
+     </div>
+</div>
+
+      </div>
       <div class="">
          <ul class="form-but">
                 <%= link_to "Back", :back, class:"btn btn-medium btn-outline-secondary rounded-pill float-end" %>

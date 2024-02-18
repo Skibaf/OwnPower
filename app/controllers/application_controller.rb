@@ -3,9 +3,7 @@ class ApplicationController < ActionController::Base
     before_action :initialize_cart
     before_action :set_render_cart
 
-    def set_query
-      @q = Lesson.ransack(params[:q])
-    end
+    
 
     protected
   
