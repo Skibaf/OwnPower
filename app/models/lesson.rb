@@ -13,7 +13,9 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+
 class Lesson < ApplicationRecord
+
   
   #Relaciones
   belongs_to :coach, class_name: 'User'
@@ -39,7 +41,13 @@ class Lesson < ApplicationRecord
   #devuelve las lecciones desde dia y por un perido de 30 en el futuro
   
   
+  def self.ransackable_attributes(auth_object = nil)
+    ["category_id", "coach_id", "created_at", "dia", "fin", "inicio", "precio", "status", "updated_at"]
+  end
 
+  def self.ransackable_associations(auth_object = nil)
+    [ "category", "coach", "user"]
+    end
 
 
   def date_cannot_be_in_the_past

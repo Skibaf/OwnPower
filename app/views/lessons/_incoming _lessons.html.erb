@@ -1,0 +1,102 @@
+<!-- app/views/lessons/index.html.erb -->
+<p style="color: green"><%= notice %></p>
+<p style="color: green"><%= notice %></p>
+<div class="container">
+  <h1>Cursos</h1>
+  <div class="">
+    <%= link_to "New lesson", new_lesson_path, class: "btn btn-warning float-end" %>
+  </div>
+</br>
+<div class="container">
+  <h5>Cursos</h5>
+  <div class="indexcontainer">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Profesor</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Dia</th>
+            <th scope="col">Inicio</th>
+            <th scope="col">Fin</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <div id="lessons">
+              <% @lessons.each do |lesson| %>
+                <tr>
+                  <td><%= lesson.id %></td>
+                  <td><%= lesson.coach.email %></td>
+                  <td><%= lesson.category.title %></td>
+                  <td><%= lesson.precio %></td>
+                  <td><%= lesson.status %></td>
+                  <td><%= lesson.dia %></td>
+                  <td><%= lesson.inicio.strftime("%H:%M") %></td>
+                  <td><%= lesson.fin.strftime("%H:%M") %></td>
+                  <td><%= link_to lesson, class: "btn btn-outline-dark  btn-sm" do %>
+                      <i class="bi bi-eye"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="container">
+      <h5>Cursos disponibles en los proximos 30 dias</h5>
+      <div class="indexcontainer">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Profesor</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Dia</th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Fin</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <div id="lessons">
+                  <% @lessons.upcoming.disponible.each do |lesson| %>
+                    <tr>
+                      <td><%= lesson.id %></td>
+                      <td><%= lesson.coach.email %></td>
+                      <td><%= lesson.category.title %></td>
+                      <td><%= lesson.precio %></td>
+                      <td><%= lesson.status %></td>
+                      <td><%= lesson.dia %></td>
+                      <td><%= lesson.inicio.strftime("%H:%M") %></td>
+                      <td><%= lesson.fin.strftime("%H:%M") %></td>
+                      <td><%= link_to lesson, class: "btn btn-outline-dark  btn-sm" do %>
+                          <i class="bi bi-eye"></i>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <ul class="form-but">
+            <%= link_to "Back", :back, class:"btn btn-outline-dark float-end" %>
+          </ul>
+        </div>
+      </br>
+    </div>
+  </div>

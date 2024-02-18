@@ -11,7 +11,8 @@ class UserController < ApplicationController
 
   def reserve
     @render_cart = true
-    @lessons = Lesson.all
+    @users=User.all.where(role: "coach")
+    @lessons = Lesson.all.order(dia: :asc)
     
   end
    

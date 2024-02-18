@@ -14,4 +14,10 @@ class Category < ApplicationRecord
     validates :title, presence: true
     validates :status, presence: true
     enum status: [:activa, :inactivo]
+
+
+    def self.ransackable_attributes(auth_object = nil)
+        ["title", "id", "description"]
+    end
+
 end

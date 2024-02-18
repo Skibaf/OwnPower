@@ -3,9 +3,8 @@ class LessonsController < ApplicationController
 
   # GET /lessons or /lessons.json
   def index
-    @categories= Category.all
-    @users=User.all.where(role: "coach")
-    @lessons = Lesson.all.order(dia: :asc)
+    @q = Lesson.ransack(params[:q])
+    @lessons = @q.result.includes(:category, :coach).order(dia: :asc)
   end
 
   # GET /lessons/1 or /lessons/1.json

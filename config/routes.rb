@@ -9,41 +9,34 @@ Rails.application.routes.draw do
   resources :lessons
   resources :categories
 
-  #Admin
-  match 'admin/users',   to: 'admin#users',   via: 'get'
-  match 'admin/index',   to: 'admin#index',   via: 'get'
 
-  #profesores
-  match 'coach/index',   to: 'coach#index',   via: 'get'
-
-  
   #users
-  get 'user/index'
-  get 'user/reserve'
-  get 'cart', to: 'cart#show'
-  post 'cart/add'
-  post 'cart/remove'
-
- 
-  resources :lessons do
-    collection do
-      get 'buscar_lessons'
-    end
-  end
-
-
-  #payments
-  post 'payments/create'
-  get 'payments/success'
-  get 'payments/pending'
-  get 'payments/failure'
-  post 'payments/notification'
-  get 'payments/index'
+   get 'user/index'
+   get 'user/reserve'
+   get 'cart', to: 'cart#show'
+   post 'cart/add'
+   post 'cart/remove'
 
   #Reservation (pagadas)
   get 'reservations/index'
   get 'reservations/create'
+
+  #Admin
+  authenticated :user, ->(user) { user.admin?} do
+    match 'admin/users',   to: 'admin#users',   via: 'get'
+    match 'admin/index',   to: 'admin#index',   via: 'get'
+
+    #payments
+    post 'payments/create'
+    get 'payments/success'
+    get 'payments/pending'
+    get 'payments/failure'
+    post 'payments/notification'
+   get 'payments/index'
+  end
   
+  #profesores
+    match 'coach/index',   to: 'coach#index',   via: 'get'
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

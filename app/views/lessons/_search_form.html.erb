@@ -1,0 +1,21 @@
+
+ <div class="card rounded-0">
+  <div class="card-body">
+    <%= search_form_for q, url: :lessons do |form| %>
+      <div class="form-group row">
+         <div class="col-lg-3">
+                    <%= form.label :dia %>
+                    <%= form.date_field :dia_gteq, class: "form-control" %>
+         </div>
+         <div class="col-lg-3">
+                    <%= form.label :coach_email_cont, "Buscar por email del usuario:" %>
+                    <%= form.text_field :coach_email_cont,  class: "form-control" %>
+         </div>
+        <div class="form-group p-2">
+                    <%= form.submit class: "btn btn-warning" %>
+                    <%= link_to "Reset", lessons_path, class: "btn btn-outline-primary" %>
+        </div>
+    <% end %>
+    </div>
+</div>
+</div>
