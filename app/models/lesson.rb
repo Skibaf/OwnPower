@@ -20,10 +20,11 @@ class Lesson < ApplicationRecord
   #Relaciones
   belongs_to :coach, class_name: 'User'
   belongs_to :category
-  belongs_to :creservation
+  has_many :reservations
   has_many :orderables
   has_many :carts, through: :orderables
 
+  
   #Validaciones de reglas de negocio
   validates :precio, numericality: { greated_than: 0}
   validates :status, presence: true

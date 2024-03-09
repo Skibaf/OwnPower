@@ -12,9 +12,9 @@
 #
 class Reservation < ApplicationRecord
   belongs_to :user
-  has_one :lesson
+  belongs_to :lesson
+  has_one :category, through: :orderables
+   
   enum status: [:Pendiente, :Pagada]
-
-
   validates :status, presence: true
 end

@@ -17,6 +17,7 @@
                               <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Lesson ID</th>
+                                <th scope="col">Lesson Category</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Payment</th>
                               </tr>
@@ -28,6 +29,7 @@
                                     <tr>
                                       <td><%= r.id %></td>
                                       <td><%= r.lesson_id %></td>
+                                      <td><%= r.lesson.category.title %></td>
                                       <td><%= r.status%></td>
                                       <td><%= r.payment %></td> 
                                     </tr>
