@@ -42,12 +42,13 @@
 
   <div>
     <%= form.label :inicio, style: "display: block" %>
-    <%= form.time_field :inicio %>
+     <%= form.time_select :inicio, { minute_step: 30 } %>
+
   </div>
 
   <div>
     <%= form.label :fin, style: "display: block" %>
-    <%= form.time_field :fin %>
+   <%= form.time_select :fin, { minute_step: 30 } %>
   </div>
 
   <div>
