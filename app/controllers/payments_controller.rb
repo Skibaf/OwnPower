@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
          #@pagos=Payment.all
     end
 
-        def create
+   def create
           #Defino listado de productos
           #items2 = @cart.orderables.map { |lesson_id| Lesson.find(id) }.map(&:to_preference_item)
           
@@ -36,23 +36,25 @@ class PaymentsController < ApplicationController
           redirect_to preference['init_point'], allow_other_host: true
           
           
-        end
+     end
 
-        def success
+        
+       def success
           session[:cart] = []
-        end
+       
+       end
 
-        def pending
+       def pending
           session[:cart] = []
-        end
+       end
 
-        def failure; end
+       def failure; end
 
-        def notification
+       def notification
           respond_to do |format|
             format.json { head :no_content }
-          end
-        end
+       end
+  end
 
   private
 

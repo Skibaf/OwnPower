@@ -45,12 +45,12 @@ class User < ApplicationRecord
    end
   
    def full_name
+      "#{fisrt_name.capitalize unless fisrt_name.nil?} #{last_name.capitalize unless last_name.nil?}"
+   end
 
-  end
-
-  def self.ransackable_attributes(auth_object = nil)
+   def self.ransackable_attributes(auth_object = nil)
     ["email", "id", "last_name", "fisrt_name"]
-end
+   end
 
 
 end

@@ -17,6 +17,14 @@ Rails.application.routes.draw do
    post 'cart/add'
    post 'cart/remove'
 
+   #payments
+   post 'payments/create'
+   get 'payments/success'
+   get 'payments/pending'
+   get 'payments/failure'
+   post 'payments/notification'
+   get 'payments/index'
+
   #Reservation (pagadas)
   get 'reservations/index'
   get 'reservations/create'
@@ -26,13 +34,6 @@ Rails.application.routes.draw do
     match 'admin/users',   to: 'admin#users',   via: 'get'
     match 'admin/index',   to: 'admin#index',   via: 'get'
 
-    #payments
-    post 'payments/create'
-    get 'payments/success'
-    get 'payments/pending'
-    get 'payments/failure'
-    post 'payments/notification'
-   get 'payments/index'
   end
   
   #profesores
