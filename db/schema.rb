@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_12_181857) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_09_201034) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,9 +61,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_181857) do
 
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "lesson_id", null: false
+    t.text "payment"
+    t.index ["lesson_id"], name: "index_reservations_on_lesson_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -89,5 +92,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_181857) do
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "lessons"
   add_foreign_key "payments", "users", column: "user_id_id"
+  add_foreign_key "reservations", "lessons"
   add_foreign_key "reservations", "users"
 end

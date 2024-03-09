@@ -6,6 +6,7 @@ class UserController < ApplicationController
     # falta modulo reservas
     @render_cart = true
     @mylessons = Lesson.all
+    @Reservations = Reservation.all
     
   
   end

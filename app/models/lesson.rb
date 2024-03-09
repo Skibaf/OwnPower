@@ -20,6 +20,7 @@ class Lesson < ApplicationRecord
   #Relaciones
   belongs_to :coach, class_name: 'User'
   belongs_to :category
+  belongs_to :creservation
   has_many :orderables
   has_many :carts, through: :orderables
 

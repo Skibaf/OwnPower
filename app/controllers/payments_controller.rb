@@ -53,16 +53,17 @@ class PaymentsController < ApplicationController
   
       # Crea reservas para cada orderable
       orderables.each do |orderable|
-        Reserva.create!(
+        Reservation.create!(
           lesson_id: orderable.lesson.id,
           user_id: current_user.id, 
-          payment_id: payment_id,
+          payment: payment_id,
           status: 'Pagada'
         )
       end
   
       # Limpia el carrito o marca los orderables como comprados según tu lógica
-      current_user.cart.orderables.destroy_all
+       @cart.orderables.destroy_all
+       session[:cart] = []
   
       # Redirige a la página de éxito o a donde desees
       redirect_to root_path, notice: 'Reservas creadas exitosamente.'
