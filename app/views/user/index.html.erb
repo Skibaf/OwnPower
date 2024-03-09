@@ -2,6 +2,11 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Mis Reservas</h2>
 
+ <div class="mt-4 text-center">
+    <%= link_to "Carrito", cart_path, class: "btn btn-warning btn-lg rounded-pill me-3" %>
+    <%= link_to "Reservar", user_reserve_path, class: "btn btn-lg btn-primary rounded-pill" %>
+  </div>
+  <br/>
   <div class="card shadow p-3 mb-5 bg-white rounded">
     <div class="card-body">
       <p class="card-text">Reserva 1</p>
@@ -10,8 +15,5 @@
     </div>
   </div>
 
-  <div class="mt-4 text-center">
-    <%= link_to "Carrito", cart_path, class: "btn btn-warning btn-lg rounded-pill me-3" %>
-    <%= link_to "Reservar", user_reserve_path, class: "btn btn-lg btn-primary rounded-pill" %>
-  </div>
+  
 </div>

@@ -47,7 +47,7 @@ class Lesson < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     [ "category", "coach", "user"]
-    end
+  end
 
 
   def date_cannot_be_in_the_past
@@ -60,18 +60,5 @@ class Lesson < ApplicationRecord
     full="#{lesson.id} - #{lesson.coach} - #{lesson.dia} - #{lesson.inicio}"
     return full
   end
-   
-  
-  
-  def to_preference_item
-    {
-      id: id,
-      title: 'reserva',
-      description: self.full_description,
-      unit_price: precio,
-      quantity: 1
-    }
-  end
-
 
 end

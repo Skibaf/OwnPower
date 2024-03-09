@@ -10,16 +10,22 @@ class PaymentsController < ApplicationController
 
    def create
           #Defino listado de productos
-          #items2 = @cart.orderables.map { |lesson_id| Lesson.find(id) }.map(&:to_preference_item)
+          orderables = @cart.orderables.includes(:lesson)
+    
+           items = orderables.map do |orderable|
+              {
+                title: "#{orderable.lesson.id} - #{orderable.lesson.category.title} - #{orderable.lesson.coach.email}",
+                quantity: 1,
+                currency_id: 'ARS', 
+                unit_price: orderable.lesson.precio.to_f,
+              }
+            end
           
+            external_reference = "#{current_user.id} - #{current_user.username}"
+
           #Genero datos para pasar a MP
           preference_data = {
-            items: [{
-              title: 'Reserva General',
-              quantity: 1,
-              currency_id: 'ARS', # Peso argentino
-              unit_price: 1.0 # Monto en pesos argentinos
-             }],
+            items: items,
              back_urls: {
                  success: payments_success_url,
                  failure: payments_failure_url,
@@ -27,7 +33,7 @@ class PaymentsController < ApplicationController
                  },
                  auto_return: 'approved',
                  notification_url: 'https://82cf-181-31-69-248.ngrok-free.app/notification',
-                 external_reference: 'reserva_general_123'
+                 external_reference: external_reference
                 }
           
                 #busco link para redirigir el pago
@@ -39,10 +45,28 @@ class PaymentsController < ApplicationController
      end
 
         
-       def success
-          session[:cart] = []
-       
-       end
+     def success
+      payment_id = params[:payment_id]
+  
+      # Recupera las orderables relacionadas con el payment_id
+      orderables = @cart.orderables.includes(:lesson)
+  
+      # Crea reservas para cada orderable
+      orderables.each do |orderable|
+        Reserva.create!(
+          lesson_id: orderable.lesson.id,
+          user_id: current_user.id, 
+          payment_id: payment_id,
+          status: 'Pagada'
+        )
+      end
+  
+      # Limpia el carrito o marca los orderables como comprados según tu lógica
+      current_user.cart.orderables.destroy_all
+  
+      # Redirige a la página de éxito o a donde desees
+      redirect_to root_path, notice: 'Reservas creadas exitosamente.'
+    end
 
        def pending
           session[:cart] = []
