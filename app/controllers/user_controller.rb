@@ -6,7 +6,7 @@ class UserController < ApplicationController
     # falta modulo reservas
     @render_cart = true
     @mylessons = Lesson.all
-    @Reservations = Reservation.all
+    @Reservations = Reservation.all.where(user_id: current_user)
     
   
   end

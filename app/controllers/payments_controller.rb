@@ -51,7 +51,7 @@ class PaymentsController < ApplicationController
       # Recupera las orderables relacionadas con el payment_id
       orderables = @cart.orderables.includes(:lesson)
   
-      # Crea reservas para cada orderable
+      # Crea reservas para cada orderable y cambio estado del curso
       orderables.each do |orderable|
         Reservation.create!(
           lesson_id: orderable.lesson.id,
@@ -59,6 +59,7 @@ class PaymentsController < ApplicationController
           payment: payment_id,
           status: 'Pagada'
         )
+        orderable.lesson.update(status: :reservada)
       end
   
       # Limpia el carrito o marca los orderables como comprados según tu lógica

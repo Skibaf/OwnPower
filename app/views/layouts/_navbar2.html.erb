@@ -1,26 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"> <img src="../images/logo-no-background.svg" alt="logo" style= "width: 120px; height:40px" ></a>
+    <a class="navbar-brand" href="/">
+      <img src="../images/logo-no-background1.svg" alt="logo" style="width: 120px; height: 40px">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!-- Utilizamos ms-auto en lugar de me-auto para alinear a la derecha -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/user/index">Mis Clases</a>
         </li>
+        <% if current_user %>
+          <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <%= current_user.username %>
+            </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            
+              <li><a class="dropdown-item" href="/users/edit" >Editar mi perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <% if current_user.admin? %>
+                <li><a class="dropdown-item" href="/admin/index" >Admin Panel</a></li>
+              <% end %>
+              <% if current_user.coach? %>
+                <li><a class="dropdown-item" href="/coach/index" >Profes</a></li>
+              <% end%>
+              <ul class="dropdown-item">
+                <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-small btn-warning" %>
+              </ul>
+            <% else %>
+              <li class="nav-item"><a class="nav-link active" href="/users/sign_up" >Registrarse</a></li>
+              <li class="nav-item"><a class="nav-link active" href="/users/sign_in" >Ingresar</a></li>
+            <% end %>
+          </ul>
+        </li>
       </ul>
-      <% if current_user %>
-        #para los profesores ver sus cursos
-        <ul class="nav-but"> <%= link_to "Mis Cursos2", coach_index_path, class: "btn btn-small btn-info" if current_user.coach? %></ul>
-        <ul class="nav-item"> <%= link_to "Editar profile", edit_user_registration_path, class: "btn btn-outline-warning" %></ul>
-        <ul  class="nav-item"> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-small btn-warning" %></ul>
-        <ul class="nav-but"> <%= link_to "Admin", admin_index_path, class: "btn btn-small btn-info" if current_user.admin? %></ul>
-      <% else %>
-        <ul class="nav-but"> <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-outline-warning"  %></ul>
-        <ul class="nav-but"> <%= link_to "Sign In", new_user_session_path, class: "btn btn-small btn-warning"  %> </ul>
-      <% end %>
-    </ul>
+    </div>
   </div>
-</div>
 </nav>
