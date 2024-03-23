@@ -15,7 +15,7 @@
                             <table class="table table-striped">
                             <thead>
                               <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">ID Reserva</th>
                                 <th scope="col">Lesson ID</th>
                                 <th scope="col">user ID</th>
                                 <th scope="col">Lesson Category</th>
@@ -32,8 +32,18 @@
                                       <td><%= r.lesson_id %></td>
                                        <td><%= r.user.email %></td>
                                       <td><%= r.lesson.category.title %></td>
-                                      <td><%= r.status%></td>
-                                      <td><%= r.payment %></td> 
+                                      <td><% if r.status == 'Pendiente' %>
+                                            <span class="btn btn-outline-danger">Pendiente</span>
+                                       <% else %>
+                                            <span class="">Reservada</span>
+                                       <% end %>
+                                      </td> 
+                                      <td><% if r.payment == 'Pendiente' %>
+                                            <span class="btn btn-outline-danger">Pendiente</span>
+                                       <% else %>
+                                            <span class="">Reservada</span>
+                                       <% end %>
+                                      </td>  
                                     </tr>
                                   <% end %>
                             </tbody>
