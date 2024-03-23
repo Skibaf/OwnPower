@@ -1,0 +1,54 @@
+---
+engine_version: 0.4.26
+file_version: 2024-03-23 22:24:55.800532000 Z
+resources: []
+configs:
+- key: header.links
+  value:
+  - name: Reports
+    link_type: reports
+  - name: Forms
+    link_type: forms
+  - conditions: []
+    type: header
+    name: OwnPower
+    path: http://127.0.0.1:3000/home
+    link_type: header
+  updated_at: 2024-03-23 22:24:55.800532000 +00:00
+- key: resources.order
+  value:
+  - user
+  - category
+  - lesson
+  - reservation
+  - payment
+  - orderable
+  - cart
+  updated_at: 2024-03-23 22:18:43.009208000 +00:00
+- key: resources.user.columns.order
+  value:
+  - id
+  - fisrt_name
+  - last_name
+  - username
+  - email
+  - role
+  - remember_created_at
+  - reset_password_sent_at
+  - password
+  - updated_at
+  - created_at
+  - encrypted_password
+  - reset_password_token
+  updated_at: 2024-03-23 22:16:46.006677000 +00:00
+queries: []
+dashboards: []
+forms: []
+alerts: []
+api_configs:
+- id: 1
+  name: origin
+  url: "/"
+  preferences: {}
+  description:
+  updated_at: 2024-03-23 22:06:04.476461000 +00:00

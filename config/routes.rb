@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+ 
   root to:  'main#home'
   devise_for :users
   
@@ -27,10 +27,11 @@ Rails.application.routes.draw do
 
   #Reservation (pagadas)
   get 'reservations/index'
-  get 'reservations/create'
+  post 'reservations/create'
 
   #Admin
   authenticated :user, ->(user) { user.admin?} do
+    mount Motor::Admin => '/motor_admin'
     match 'admin/users',   to: 'admin#users',   via: 'get'
     match 'admin/index',   to: 'admin#index',   via: 'get'
 

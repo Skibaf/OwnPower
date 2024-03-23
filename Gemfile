@@ -51,6 +51,9 @@ gem "bootsnap", require: false
 # Gemfile para busquedas
 gem 'ransack'
 
+#Gem para panle de admin
+gem 'motor-admin'
+
 gem 'mercadopago-sdk'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

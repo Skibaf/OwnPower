@@ -19,6 +19,31 @@ class ReservationsController < ApplicationController
     end
 
     def create
+      
+      # Recupera las orderables relacionadas con el payment_id
+      orderables = @cart.orderables.includes(:lesson)
+  
+      # Crea reservas para cada orderable y cambio estado del curso
+      orderables.each do |orderable|
+        Reservation.create!(
+          lesson_id: orderable.lesson.id,
+          user_id: current_user.id, 
+          payment: 'Pendiente',
+          status: 'Pendiente'
+        )
+        orderable.lesson.update(status: :reservada)
+      end
+  
+      # Limpia el carrito o marca los orderables como comprados según tu lógica
+       @cart.orderables.destroy_all
+       session[:cart] = []
+  
+      # Redirige a la página de éxito o a donde desees
+      redirect_to user_index_path, notice: 'Reservas creadas exitosamente.'
+
+    end
+    
+    def creat
       @reservation = Reservation.new(reservation_params)
 
       respond_to do |format|
@@ -31,7 +56,6 @@ class ReservationsController < ApplicationController
         end
       end
     end
-
   
     def update
       respond_to do |format|
