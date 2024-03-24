@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      margin-top: 0;
+    }
+    h3 {
+      color: #777;
+      margin-top: 10px;
+    }
+    p {
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .red-text {
+      color: red;
+    }
+    .highlight {
+      background-color: #ffe0e0;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center;">Bienvenido a OwnPower</h1>
+    <h3>Hola <%= @user.username %>,</h3>
+    <p>Gracias por reservar en nuestra aplicación.</p>
+    <p><strong>ID de reserva:</strong> <%= @reservation.id %></p>
+    <p><strong>ID de la lección:</strong> <%= @reservation.lesson.id %></p>
+    <p><strong>Profesor de la lección:</strong> <%= @reservation.lesson.coach.email %></p>
+    <p><strong>Día de la lección:</strong> <%= @reservation.lesson.dia %></p>
+    <p><strong>Hora de inicio:</strong> <%= @reservation.lesson.inicio %></p>
+    <p><strong>Estado de la reserva:</strong> 
+      <% if @reservation.status == 'Pendiente' %>
+        <span class="red-text"><%= @reservation.status %></span>
+      <% else %>
+        <%= @reservation.status %>
+      <% end %>
+    </p>
+    <p><strong>Método de pago:</strong> 
+      <% if @reservation.status == 'Pendiente' %>
+        <span class="red-text"><%= @reservation.payment %></span>
+      <% else %>
+        <%= @reservation.payment %>
+      <% end %>
+    </p>
+    <p class="highlight"><strong>Recuerda el compromiso de reserva.</strong></p>
+  </div>
+</body>
+</html>
+

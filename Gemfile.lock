@@ -147,6 +147,10 @@ GEM
     jsbundling-rails (1.2.2)
       railties (>= 6.0.0)
     json (2.7.1)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.9.0)
+      launchy (>= 2.2, < 3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -321,6 +325,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder
   jsbundling-rails
+  letter_opener
   mercadopago-sdk
   motor-admin
   pg (~> 1.1)

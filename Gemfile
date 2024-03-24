@@ -51,28 +51,24 @@ gem "bootsnap", require: false
 # Gemfile para busquedas
 gem 'ransack'
 
-#Gem para panle de admin
+#Gema para panle de admin
 gem 'motor-admin'
 
+#Gema para procesar pagos
 gem 'mercadopago-sdk'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   gem "annotate"
   gem 'dotenv-rails'
-
-
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  # Test emails
+  gem 'letter_opener'
 end
 
 group :test do

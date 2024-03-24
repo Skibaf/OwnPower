@@ -25,13 +25,14 @@ class ReservationsController < ApplicationController
   
       # Crea reservas para cada orderable y cambio estado del curso
       orderables.each do |orderable|
-        Reservation.create!(
+        reservation= Reservation.create!(
           lesson_id: orderable.lesson.id,
           user_id: current_user.id, 
           payment: 'Pendiente',
           status: 'Pendiente'
         )
         orderable.lesson.update(status: :reservada)
+        ReservationMailer.new_reservation_email(current_user, reservation).deliver_now 
       end
   
       # Limpia el carrito o marca los orderables como comprados según tu lógica
@@ -43,19 +44,7 @@ class ReservationsController < ApplicationController
 
     end
     
-    def creat
-      @reservation = Reservation.new(reservation_params)
-
-      respond_to do |format|
-        if @lesson.save
-          format.html { redirect_to lesson_url(@lreservationn), notice: "La reserva fue  creada." }
-          format.json { render :show, status: :created, location: @reservation }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @reservation.errors, status: :unprocessable_entity }
-        end
-      end
-    end
+    
   
     def update
       respond_to do |format|
