@@ -35,13 +35,13 @@
                                       <td><% if r.status == 'Pendiente' %>
                                             <span class="btn btn-outline-danger">Pendiente</span>
                                        <% else %>
-                                            <span class="">Reservada</span>
+                                            <span class=""><%= r.status %></span>
                                        <% end %>
                                       </td> 
                                       <td><% if r.payment == 'Pendiente' %>
                                             <span class="btn btn-outline-danger">Pendiente</span>
                                        <% else %>
-                                            <span class="">Reservada</span>
+                                            <span class="">R<%= r.payment %></span>
                                        <% end %>
                                       </td>  
                                     </tr>
