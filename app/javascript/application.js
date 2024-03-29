@@ -3,6 +3,7 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
 import { Turbo } from "@hotwired/turbo-rails";
+import "chartkick/chart.js"
 
 document.addEventListener("turbo:load", () => {
   document.getElementById('search_form').addEventListener('ajax:success', (event) => {
