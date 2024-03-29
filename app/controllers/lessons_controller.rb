@@ -1,8 +1,11 @@
+
 class LessonsController < ApplicationController
+  
   before_action :set_lesson, only: %i[ show edit update destroy ]
 
   # GET /lessons or /lessons.json
   def index
+    @lesson = Lesson.new
     @q = Lesson.ransack(params[:q])
     @lessons = @q.result.includes(:category, :coach).order(dia: :asc)
   end
@@ -37,19 +40,24 @@ class LessonsController < ApplicationController
   end
 
   # POST /lessons or /lessons.json
+  
+
+
   def create
     @lesson = Lesson.new(lesson_params)
-
+    
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to lesson_url(@lesson), notice: "Lesson was successfully created." }
-        format.json { render :show, status: :created, location: @lesson }
+        format.html { redirect_to lessons_path, success: 'La lección se creó exitosamente.' }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('new_lesson_form', partial: 'lessons/form', locals: { lesson: Lesson.new }) }
+
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+        format.html { render :new }
       end
     end
   end
+  
+  
 
   # PATCH/PUT /lessons/1 or /lessons/1.json
   def update

@@ -1,64 +1,88 @@
 <!-- app/views/lessons/index.html.erb -->
-<p style="color: green"><%= notice %></p>
-<p style="color: green"><%= notice %></p>
+
 <div class="container">
   <h1>Cursos</h1>
-   <div class="container">
-       <%= render "lessons/search_form", q: @q %>
-       </br>
-       <div class="container">
-        <%= link_to "New lesson", new_lesson_path, class: "btn btn-warning float-end" %>
-       </div>
-       </br>
-       <div class="container">
-         <h5>Cursos</h5>
-          <div class="indexcontainer">
-            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th><%= sort_link(@q, :coach_id, "Profesor")%> </th>
-                    <th><%= sort_link(@q, :category_title, "Categoria")%> </th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Estado</th>
-                    <th><%= sort_link(@q, :dia, "Dia", default_order: :desc)%> </th>
-                    <th scope="col">Inicio</th>
-                    <th scope="col">Fin</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <div id="lessons">
-                      <% @lessons.each do |lesson| %>
-                        <tr>
-                          <td><%= lesson.id %></td>
-                          <td><%= lesson.coach.email %></td>
-                          <td><%= lesson.category.title %></td>
-                          <td><%= lesson.precio %></td>
-                          <td><%= lesson.status %></td>
-                          <td><%= lesson.dia %></td>
-                          <td><%= lesson.inicio.strftime("%H:%M") %></td>
-                          <td><%= lesson.fin.strftime("%H:%M") %></td>
-                          <td><%= link_to lesson, class: "btn btn-outline-dark  btn-sm" do %>
-                              <i class="bi bi-eye"></i>
-                            <% end %>
-                          
-                      </div>
-                      </tr>
-                      <% end %>
-                </tbody>
-              </table>
-          </div>
-          </div>
-       </div>
-       <div class="">
-                  <ul class="form-but">
-                    <%= link_to "Back", :back, class:"btn btn-outline-dark float-end" %>
-                  </ul>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-body">
+           <!-- render del form para crear las clases -->
+          <%= render "lessons/form", lesson: @lesson %>
+          <% if flash[:success] %>
+            <div class="alert alert-success" role="alert">
+              <%= flash[:success] %>
+            </div>
+            <script>
+              setTimeout(function() {
+                document.querySelector('.alert-success').style.display = 'none';
+              }, 20000);
+            </script>
+          <% elsif flash[:error] %>
+            <div class="alert alert-danger" role="alert">
+              <%= flash[:error] %>
+            </div>
+          <% end %>
         </div>
-        </br>
+      </div>
+    </div>
+
+     <!-- render del serach conectado con ransak -->
+    <div class="col-lg-8">
+      <div class="card mb-3">
+        <div class="card-body">
+          <%= render "lessons/search_form", q: @q %>
+        </div>
+      </div>
+
+       <!-- render tabla de clases que actualiza -->
+      <%= turbo_frame_tag 'lessons_table' do %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cursos</h5>
+          <div class="indexcontainer">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th><%= sort_link(@q, :coach_id, "Profesor") %></th>
+                  <th><%= sort_link(@q, :category_title, "Categoria") %></th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Estado</th>
+                  <th><%= sort_link(@q, :dia, "Dia", default_order: :desc) %></th>
+                  <th scope="col">Inicio</th>
+                  <th scope="col">Fin</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @lessons.each do |lesson| %>
+                  <tr>
+                    <td><%= lesson.id %></td>
+                    <td><%= lesson.coach.email %></td>
+                    <td><%= lesson.category.title %></td>
+                    <td><%= lesson.precio %></td>
+                    <td><%= lesson.status %></td>
+                    <td><%= lesson.dia %></td>
+                    <td><%= lesson.inicio.strftime("%H:%M") %></td>
+                    <td><%= lesson.fin.strftime("%H:%M") %></td>
+                    <td>
+                      <%= link_to lesson, class: "btn btn-outline-dark btn-sm" do %>
+                        <i class="bi bi-eye"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
   </div>
-</div>
-</div>
+  <div class="mt-3">
+    <ul class="form-but">
+      <%= link_to "Back", :back, class: "btn btn-outline-dark float-end" %>
+    </ul>
+  </div>

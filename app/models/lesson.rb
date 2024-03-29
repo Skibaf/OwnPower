@@ -53,10 +53,11 @@ class Lesson < ApplicationRecord
 
 
   def date_cannot_be_in_the_past
-    if dia < Date.today
+    if dia.present? && dia < Date.today
       errors.add(:dia, "No puede estar en el pasado")
     end
   end
+  
 
   def full_description
     full="#{lesson.id} - #{lesson.coach} - #{lesson.dia} - #{lesson.inicio}"

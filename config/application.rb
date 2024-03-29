@@ -7,6 +7,8 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 require 'dotenv/load'
 
+config.middleware.use Turbo::Streams::Channel
+
 module Ownpower
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
