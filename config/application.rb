@@ -7,7 +7,7 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 require 'dotenv/load'
 
-config.middleware.use Turbo::Streams::Channel
+
 
 module Ownpower
   class Application < Rails::Application
@@ -26,5 +26,7 @@ module Ownpower
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # Utilize Turbo Streams Channel middleware
+    #self.config.middleware.use Turbo::Streams::Channel
   end
 end

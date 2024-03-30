@@ -54,7 +54,7 @@ class Lesson < ApplicationRecord
 
   def date_cannot_be_in_the_past
     if dia.present? && dia < Date.today
-      errors.add(:dia, "No puede estar en el pasado")
+      errors.add(:dia, "No se puede crear una clase en el pasado. Si es para modificar cancelalá y crea una nueva.")
     end
   end
   
