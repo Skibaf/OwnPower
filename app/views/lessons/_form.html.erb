@@ -1,53 +1,64 @@
-<%= form_with(model: lesson, local: true, class: "needs-validation", novalidate: true) do |form| %>
-  <%= turbo_frame_tag 'new_lesson_form' do %>
-    <% if lesson.errors.any? %>
-      <div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Error al guardar la lección:</h4>
-        <ul>
-          <% lesson.errors.full_messages.each do |error| %>
-            <li><%= error %></li>
+
+<div class="container">
+  <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+              <%= form_with(model: lesson, local: true, class: "needs-validation", novalidate: true) do |form| %>
+            
+              <% if lesson.errors.any? %>
+                <div class="alert alert-danger" role="alert">
+                  <h4 class="alert-heading">Error al guardar la lección:</h4>
+                  <ul>
+                    <% lesson.errors.full_messages.each do |error| %>
+                      <li><%= error %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="mb-3">
+                <%= form.label :coach_id, "Coach", class: "form-label" %>
+                <%= collection_select(:lesson, :coach_id, User.all.where(role: "coach"), :id, :email, { include_blank: "Seleccionar Coach" }, { class: "form-select" }) %>
+              </div>
+
+              <div class="mb-3">
+                <%= form.label :category_id, "Categoría", class: "form-label" %>
+                <%= collection_select(:lesson, :category_id, Category.all, :id, :title, { include_blank: "Seleccionar Categoría" }, { class: "form-select" }) %>
+              </div>
+
+              <div class="mb-3">
+                <%= form.label :precio, "Precio", class: "form-label" %>
+                <%= form.number_field :precio, class: "form-control" %>
+              </div>
+
+              <div class="mb-3">
+                <%= form.label :status, "Estado", class: "form-label" %>
+                <%= form.select :status, Lesson.statuses.keys.map { |w| [w.humanize, w] }, { include_blank: "Seleccionar Estado" }, class: "form-select" %>
+              </div>
+
+              <div class="mb-3">
+                <%= form.label :dia, "Día", class: "form-label" %>
+                <%= form.date_field :dia, class: "form-control" %>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <%= form.label :inicio, "Inicio", class: "form-label" %> 
+                  <%= form.time_select :inicio, { minute_step: 30 }, class: "form-control" %>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <%= form.label :fin, "Fin", class: "form-label" %>
+                  <%= form.time_select :fin, { minute_step: 30 }, class: "form-control" %>
+                </div>
+              </div>
+
+              <%= form.submit "Guardar", class: "btn btn-warning" %>
+
           <% end %>
-        </ul>
+
+        </div>
       </div>
-    <% end %>
+  </div>
+ </div>
 
-    <div class="mb-3">
-      <%= form.label :coach_id, "Coach", class: "form-label" %>
-      <%= collection_select(:lesson, :coach_id, User.all.where(role: "coach"), :id, :email, { include_blank: "Seleccionar Coach" }, { class: "form-select" }) %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :category_id, "Categoría", class: "form-label" %>
-      <%= collection_select(:lesson, :category_id, Category.all, :id, :title, { include_blank: "Seleccionar Categoría" }, { class: "form-select" }) %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :precio, "Precio", class: "form-label" %>
-      <%= form.number_field :precio, class: "form-control" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :status, "Estado", class: "form-label" %>
-      <%= form.select :status, Lesson.statuses.keys.map { |w| [w.humanize, w] }, { include_blank: "Seleccionar Estado" }, class: "form-select" %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :dia, "Día", class: "form-label" %>
-      <%= form.date_field :dia, class: "form-control" %>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <%= form.label :inicio, "Inicio", class: "form-label" %> 
-        <%= form.time_select :inicio, { minute_step: 30 }, class: "form-control" %>
-      </div>
-
-      <div class="col-md-6 mb-3">
-        <%= form.label :fin, "Fin", class: "form-label" %>
-        <%= form.time_select :fin, { minute_step: 30 }, class: "form-control" %>
-      </div>
-    </div>
-
-    <%= form.submit "Guardar", class: "btn btn-warning" %>
-  <% end %>
-<% end %>

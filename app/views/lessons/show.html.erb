@@ -1,10 +1,29 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @lesson %>
-
-<div>
-  <%= link_to "Edit this lesson", edit_lesson_path(@lesson) %> |
-  <%= link_to "Back to lessons", lessons_path %>
-
-  <%= button_to "Destroy this lesson", @lesson, method: :delete %>
+<div class="container">
+  <div class="row justify-content-center mt-5"> <!-- Agregado mt-5 para un margen superior -->
+    <div class="col-md-8">
+      <h3> Clase </h3>
+      <div class="card mb-4"> <!-- Agregado mb-4 para un margen inferior -->
+        <div class="card-body">
+          <%= render @lesson %>
+        </div>
+      </div>
+      
+      <!-- Botones -->
+      <div class="row justify-content-end">
+        <div class="col">
+          <ul class="list-inline text-end">
+            <li class="list-inline-item">
+              <%= link_to "Editar", edit_lesson_path(@lesson), class:"btn btn-outline-secondary rounded-pill" %>
+            </li>
+            <li class="list-inline-item">
+              <%= link_to "Volver a clases", lessons_path, class:"btn btn-outline-secondary rounded-pill" %>
+            </li>
+            <li class="list-inline-item">
+              <%= link_to "Eliminar", @lesson, method: :delete, class:"btn btn-outline-secondary rounded-pill" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

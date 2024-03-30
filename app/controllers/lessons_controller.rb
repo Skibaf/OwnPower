@@ -48,11 +48,11 @@ class LessonsController < ApplicationController
     
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to lessons_path, success: 'La lección se creó exitosamente.' }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('new_lesson_form', partial: 'lessons/form', locals: { lesson: Lesson.new }) }
-
+        format.html { redirect_to lesson_url(@lesson), notice: 'La clase se creó exitosamente.' }
+        format.json { render :show, status: :created, location: @lesson }
       else
-        format.html { render :new }
+        format.html { render :new , status: :unprocessable_entity}
+        format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,7 +63,7 @@ class LessonsController < ApplicationController
   def update
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to lesson_url(@lesson), notice: "Lesson was successfully updated." }
+        format.html { redirect_to lesson_url(@lesson), notice: "La clase se actualizo ." }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,7 +77,7 @@ class LessonsController < ApplicationController
     @lesson.destroy!
 
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: "Lesson was successfully destroyed." }
+      format.html { redirect_to lessons_url, notice: "La clase fue eliminada." }
       format.json { head :no_content }
     end
   end
