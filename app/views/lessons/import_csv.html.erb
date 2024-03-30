@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10"> <!-- Aumenta el tamaño de la columna para hacer la tarjeta más grande -->
+      <h3 class="mb-4">Crear clases - Importar</h3>
+      <div class="card p-4">
+        <%= form_with url: import_csv_lessons_path, method: :post, class: "mb-3" do |f| %>
+          <div class="input-group">
+            <%= f.file_field :file, accept: ".csv", class: "form-control" %>
+            <button type="submit" class="btn btn-primary">Subir</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Botón "Volver a clases" alineado a la derecha -->
+  <div class="row justify-content-end mt-3">
+    <div class="col-md-10">
+      <div class="text-end"> <!-- Alinea el contenido a la derecha -->
+        <%= link_to "Volver a clases", lessons_path, class: "btn btn-outline-secondary rounded-pill" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

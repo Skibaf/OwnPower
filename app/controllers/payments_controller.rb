@@ -53,13 +53,14 @@ class PaymentsController < ApplicationController
   
       # Crea reservas para cada orderable y cambio estado del curso
       orderables.each do |orderable|
-        Reservation.create!(
+        reservation=Reservation.create!(
           lesson_id: orderable.lesson.id,
           user_id: current_user.id, 
           payment: payment_id,
           status: 'Pagada'
         )
         orderable.lesson.update(status: :reservada)
+        ReservationMailer.new_reservation_email(current_user, reservation).deliver_now 
       end
   
       # Limpia el carrito o marca los orderables como comprados según tu lógica

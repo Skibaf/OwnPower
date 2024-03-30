@@ -6,9 +6,15 @@ Rails.application.routes.draw do
   get '/about', to: 'main#about'
   get '/home', to: 'main#home'
   
-  resources :lessons
-  resources :categories
 
+  resources :categories
+  
+  resources :lessons do
+    collection do
+      get 'import_csv', to: 'lessons#import_csv'
+      post 'import_csv', to: 'lessons#import'
+    end
+  end
 
   #users
    get 'user/index'

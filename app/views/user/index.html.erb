@@ -16,8 +16,8 @@
                             <thead>
                               <tr>
                                 <th scope="col">ID Reserva</th>
+                                <th scope="col">Fecha reserva</th>
                                 <th scope="col">Lesson ID</th>
-                                <th scope="col">user ID</th>
                                 <th scope="col">Lesson Category</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Payment</th>
@@ -29,9 +29,9 @@
                                   <% @Reservations.each do |r| %>
                                     <tr>
                                       <td><%= r.id %></td>
+                                      <td><%= r.created_at.strftime('%Y-%m-%d') %></td>
                                       <td><%= r.lesson_id %></td>
-                                       <td><%= r.user.email %></td>
-                                      <td><%= r.lesson.category.title %></td>
+                                       <td><%= r.lesson.category.title %></td>
                                       <td><% if r.status == 'Pendiente' %>
                                             <span class="btn btn-outline-danger">Pendiente</span>
                                        <% else %>

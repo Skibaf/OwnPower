@@ -41,7 +41,22 @@ class LessonsController < ApplicationController
 
   # POST /lessons or /lessons.json
   
+  def import
+    file = params[:file]
 
+    # redirect if bad data
+    return redirect_to import_csv_lessons_path, alert: 'No file selected' unless file
+    return redirect_to import_csv_lessons_path, alert: 'Please select CSV file instead' unless file.content_type == 'text/csv'
+
+    # import data
+    csvImportService = CsvImportService.new(file)
+    csvImportService.import
+
+    # redirect with notice
+    redirect_to lessons_path,
+    notice: "#{csvImportService.number_imported_with_last_run}  imported"
+  end
+  
 
   def create
     @lesson = Lesson.new(lesson_params)

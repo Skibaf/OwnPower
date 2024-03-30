@@ -22,7 +22,7 @@
       <div class="card-body">
          <div class="card-body d-flex align-items-center justify-content-center">
              <!-- link a pagina de carga-->
-             <button type="button" class="btn btn-secondary btn-lg mx-1">Cargar clases - CVS</button>
+              <%= link_to "Cargar clases - CVS", import_csv_lessons_path, class: "btn btn-secondary btn-lg mx-1" %>
              <!-- link a modelo de clases  -->
             <%= link_to "Mis Clases", lessons_path, class: "btn btn-warning btn-lg mx-1" %>
 
