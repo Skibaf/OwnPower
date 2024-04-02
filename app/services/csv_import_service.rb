@@ -2,36 +2,37 @@ require 'csv'
 
 class CsvImportService
   
-  def initialize(file)
-    @file = file
-    @count = 0
-  end
-
-  def import
-    @count = 0
-
-    CSV.foreach(@file.path, headers: true) do |row|
-      lesson_params = {
-        coach_id: row['coach_id'],
-        category_id: Category.find_by(title: row['category_title'])&.id,
+  def import(file)
+    errors = []
+    count = 0
+    
+    opened_file = File.open(file)
+    options = { headers: true, col_sep: ',' }
+    
+    CSV.foreach(opened_file, **options) do |row|
+      
+      lesson_hash = {
+        coach_id: User.find_by(username: row['coach'])&.id,
+        category_id: Category.find_by(title: row['category'])&.id,
         precio: row['precio'],
         status: row['status'],
         dia: row['dia'],
         inicio: row['inicio'],
         fin: row['fin']
       }
-
-      lesson = Lesson.new(lesson_params)
-      unless lesson.save
-        Rails.logger.error("Error importing lesson: #{lesson.errors.full_messages.join(', ')}")
+      
+      lesson = Lesson.new(lesson_hash)
+      
+      if lesson.save
+        count += 1
+      else
+        errors << "Error importing lesson at line #{opened_file.lineno}: #{lesson.errors.full_messages.join(', ')}"
       end
-      @count  += 1
     end
+    
+    { count: count, errors: errors }
   end
 
-  def number_imported_with_last_run
-    @count
-  end
 end
 
 

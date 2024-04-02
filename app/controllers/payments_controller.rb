@@ -68,7 +68,7 @@ class PaymentsController < ApplicationController
        session[:cart] = []
   
       # Redirige a la página de éxito o a donde desees
-      redirect_to root_path, notice: 'Reservas creadas exitosamente.'
+      redirect_to user_index_path, notice: 'Reservas creadas exitosamente.'
     end
 
        def pending

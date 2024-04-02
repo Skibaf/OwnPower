@@ -19,6 +19,7 @@ class CartController < ApplicationController
     if current_orderable
       # Si ya hay una orderable para esta lección, muestra un mensaje indicando que ya está en el carrito
       flash[:notice] = 'Esta lección ya está en el carrito.'
+      
     else
       # Si no existe, crea una nueva orderable para la lección en el carrito
       @cart.orderables.create(lesson: @lesson, quantity: quantity)
