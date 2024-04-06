@@ -12,15 +12,15 @@
       <div class="row justify-content-end">
         <div class="col">
           <ul class="list-inline text-end">
-            <li class="list-inline-item">
-              <%= link_to "Editar", edit_lesson_path(@lesson), class:"btn btn-outline-secondary rounded-pill" %>
-            </li>
+             <% unless @lesson.reservada? %> <!-- Verifica si la lección está reservada -->       
+              <li class="list-inline-item">
+                <%= link_to "Editar", edit_lesson_path(@lesson), class:"btn btn-outline-secondary rounded-pill" %>
+              </li>
+            <% end %>
             <li class="list-inline-item">
               <%= link_to "Volver a clases", lessons_path, class:"btn btn-outline-secondary rounded-pill" %>
             </li>
-            <li class="list-inline-item">
-              <%= link_to "Eliminar", @lesson, method: :delete, class:"btn btn-outline-secondary rounded-pill" %>
-            </li>
+          
           </ul>
         </div>
       </div>

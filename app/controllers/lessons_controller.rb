@@ -7,7 +7,7 @@ class LessonsController < ApplicationController
   def index
     @lesson = Lesson.new
     @q = Lesson.ransack(params[:q])
-    @lessons = @q.result.includes(:category, :coach).order(dia: :asc)
+    @lessons = @q.result.where(coach_id: current_user).includes(:category, :coach).order(dia: :asc)
   end
 
   # GET /lessons/1 or /lessons/1.json
@@ -17,6 +17,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @lesson.coach_id = current_user.id
   end
 
   # GET /lessons/1/edit

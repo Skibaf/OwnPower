@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="col">
-      <div class="card h-100">
+      <div class="card h-100" style="max-width: 500px;">
         <div class="card-body">
               <%= form_with(model: lesson, local: true, class: "needs-validation", novalidate: true) do |form| %>
             
@@ -33,25 +33,29 @@
 
               <div class="mb-3">
                 <%= form.label :status, "Estado", class: "form-label" %>
-                <%= form.select :status, Lesson.statuses.keys.map { |w| [w.humanize, w] }, { include_blank: "Seleccionar Estado" }, class: "form-select" %>
+                <%= form.select :status, Lesson.statuses.keys.map { |w| [w.humanize, w] }, { include_blank: "Seleccionar Estado", selected: "disponible" }, { class: "form-select" } %>
+
               </div>
 
               <div class="mb-3">
+                <div style="max-width: 200px;">
                 <%= form.label :dia, "Día", class: "form-label" %>
                 <%= form.date_field :dia, class: "form-control" %>
+                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <%= form.label :inicio, "Inicio", class: "form-label" %> 
-                  <%= form.time_select :inicio, { minute_step: 30 }, class: "form-control" %>
+              <div class="mb-3 row "> 
+                  <div class="col"> 
+                    <%= form.label :inicio, "Inicio", class: "form-label" %> 
+                    <%= form.time_select :inicio, { minute_step: 30 }, class: "form-control" %>
+                  </div>
+                  <div class="col"> 
+                    
+                    <%= form.label :fin, "Fin", class: "form-label mt-3" %>
+                    <%= form.time_select :fin, { minute_step: 30 }, class: "form-control" %>
+                  </div>
                 </div>
 
-                <div class="col-md-6 mb-3">
-                  <%= form.label :fin, "Fin", class: "form-label" %>
-                  <%= form.time_select :fin, { minute_step: 30 }, class: "form-control" %>
-                </div>
-              </div>
 
               <%= form.submit "Guardar", class: "btn btn-warning" %>
 

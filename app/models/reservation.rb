@@ -17,4 +17,9 @@ class Reservation < ApplicationRecord
    
   enum status: [:Pendiente, :Pagada]
   validates :status, presence: true
+
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "id", "lesson_id", "status", "payment"]
+  end
 end

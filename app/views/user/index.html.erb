@@ -1,9 +1,9 @@
 
 <div  class="container mt-5">
     <h2 class="text-center mb-4">Mis Reservas</h2>
-     <div class="mt-4 text-center">
-        <%= link_to "Carrito", cart_path, class: "btn btn-warning btn-lg rounded-pill me-3" %>
-        <%= link_to "Reservar", user_reserve_path, class: "btn btn-lg btn-primary rounded-pill" %>
+     <div class="mt-4 text-end">
+        
+        <%= link_to "Reservar", user_reserve_path, class: "btn btn-lg btn-warning rounded-pill" %>
       </div>
       <br/>
       <div class="card shadow p-3 mb-5 bg-white rounded">
@@ -16,11 +16,13 @@
                             <thead>
                               <tr>
                                 <th scope="col">ID Reserva</th>
-                                <th scope="col">Fecha reserva</th>
-                                <th scope="col">Lesson ID</th>
-                                <th scope="col">Lesson Category</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Payment</th>
+                                <th><%= sort_link(@q, :created_at, "Fecha reserva") %></th>
+                                <th scope="col">ID Clase</th>
+                                <th scope="col">Fecha Clase</th>
+                                <th scope="col">Category</th>
+                                <th><%= sort_link(@q, :status, "Estado") %></th>
+                                <th><%= sort_link(@q, :payment, "Pago") %></th>
+                              
                               </tr>
                             </thead>
                             <tbody>
@@ -31,18 +33,23 @@
                                       <td><%= r.id %></td>
                                       <td><%= r.created_at.strftime('%Y-%m-%d') %></td>
                                       <td><%= r.lesson_id %></td>
-                                       <td><%= r.lesson.category.title %></td>
+                                      <td><%= r.lesson.dia %></td>
+                                      <td><%= r.lesson.category.title %></td>
                                       <td><% if r.status == 'Pendiente' %>
-                                            <span class="btn btn-outline-danger">Pendiente</span>
-                                       <% else %>
-                                            <span class=""><%= r.status %></span>
-                                       <% end %>
+                                              
+                                              <span class="text-danger">Pendiente</span>
+                                              <i class="bi bi-exclamation-triangle text-danger"></i> 
+                                              <% else %>
+                                                <span class=""><%= r.status %>
+                                              <% end %>
                                       </td> 
                                       <td><% if r.payment == 'Pendiente' %>
-                                            <span class="btn btn-outline-danger">Pendiente</span>
-                                       <% else %>
-                                            <span class="">R<%= r.payment %></span>
-                                       <% end %>
+                                              
+                                              <span class="text-danger">Pendiente</span>
+                                              <i class="bi bi-exclamation-triangle text-danger"></i> 
+                                              <% else %>
+                                                <span class=""><%= r.payment %>
+                                              <% end %>
                                       </td>  
                                     </tr>
                                   <% end %>

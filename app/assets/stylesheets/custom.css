@@ -42,12 +42,17 @@
    */
 
    .formContainer {
+    max-width: 400px; /* Reducir el ancho del primer contenedor */
+  }
+  /*!
+  .formContainer {
     max-width:5000px;
     box-shadow : 4px 8px 16px #d7d7d7;
     margin:0 auto;
     padding:10px;
     border-radius:0px 0px 4px 4px;
   }
+  */
   input {
     box-shadow:none !important;
     outline:none;
@@ -55,10 +60,18 @@
   #btnHolder {
     margin:0px -20px -20px -20px;
   }
+
+  #btnHolder .btn {
+    border-radius: 0px 0px 4px 4px !important;
+    height: 60px;
+    width: auto; /* Permitir que el ancho del botón se ajuste automáticamente */
+  }
+  /*!
   #btnHolder .btn {
     border-radius:0px 0px 4px 4px !important;
     height:60px;
   }
+  */
   @media screen and (max-width:766px){
     .centerOnMobile {
       margin : 20vh auto
@@ -66,35 +79,51 @@
   }
   @media screen and (min-width:767px){
     #mainBgn {
-      background : url('/images/c2.jpg') no-repeat;
-      background-size:cover;
-      background-position:center;
-      height:90vh;
-      width:100%;
-      margin: 5vh 20px;
+      background: url('/images/c4.jpg') no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 80vh;
+      width: 100%;
     }
     #mainContainer {
-      box-shadow : 2px 4px 12px rgba(0,0,0,0.4);
-      height:98vh;
-      margin: 2vh 10px;
+      box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
+      height: 80vh;
+      margin: 5vh auto; /* Centrar el contenedor horizontalmente */
+      max-width: 1000px; /* Limitar el ancho máximo del contenedor */
     }
   }
 
   @media screen and (min-width:767px){
     #mainBgnlogin {
-      background : url('/images/c2.jpg') no-repeat;
-      background-size:cover;
-      background-position:center;
-      height:75vh;
-      width:100%;
-      margin: 5vh 20px;
-    }
+      
+      background: url('/images/c4.jpg') no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 80vh;
+      width: 100%;
+     
+}
+
+
     #mainContainerlogin {
-      box-shadow : 2px 4px 12px rgba(0,0,0,0.4);
-      height:80vh;
-      margin: 5vh 20px;
+      box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
+      height: 80vh;
+      margin: 5vh auto; /* Centrar el contenedor horizontalmente */
+      max-width: 1000px; /* Limitar el ancho máximo del contenedor */
     }
   }
+/*!
+  * end changes 
+*/
+/*!
+  * lesson- new form 
+*/
+.input-group-date {
+  max-width: 200px; /* Establecer el ancho máximo según tus necesidades */
+}
+
+
+
 /*!
   * end changes 
 */

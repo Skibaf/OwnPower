@@ -4,8 +4,7 @@ class ReservationsController < ApplicationController
 
     def index
        @Reservations = Reservation.all
-        #@q = Reservation.ransack(params[:q])
-        #@reservations = @q.result.includes(:user_id, :status, :lesson_id, :payment)
+        
     end
 
     def show

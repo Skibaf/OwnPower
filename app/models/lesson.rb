@@ -26,12 +26,14 @@ class Lesson < ApplicationRecord
 
   
   #Validaciones de reglas de negocio
-  validates :precio, numericality: { greated_than: 0}
+  validates :precio, numericality: { greater_than: 0, message: ": El precio debe ser mayor que cero" }
   validates :status, presence: true
-  validates :coach, presence: true
+  validates :coach, presence:  { message: ": Ingresa por favor un profesor" }
   validate :date_cannot_be_in_the_past
-    #validar hora final es despues de inicio
-  validates :fin, comparison: { greater_than: :inicio }
+  validates_presence_of :category, message: ": Debes seleccionar una categoría"
+  validates_presence_of :dia, message: ": Debes seleccionar una fecha"
+  #validar hora final es despues de inicio
+  validates :fin, comparison: { greater_than: :inicio, message: ": La hora de fin debe ser mayor que la hora de inicio" }
   
   enum status: [:disponible, :reservada, :cancelada]
 
@@ -42,7 +44,7 @@ class Lesson < ApplicationRecord
   scope :disponibles, ->{ where(status: :disponible) }
   #devuelve las lecciones desde dia y por un perido de 30 en el futuro
   
-  
+  #Atributos para usar search en las vistas
   def self.ransackable_attributes(auth_object = nil)
     ["category_id", "coach_id", "created_at", "dia", "fin", "inicio", "precio", "status", "updated_at"]
   end
@@ -50,8 +52,15 @@ class Lesson < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     [ "category", "coach", "user"]
   end
+  
+  #funcion para ver si es editable por el profesor
+  def disponible?
+    self.status == "disponible"
+  end
 
+  
 
+  #Logica BU- No se puede crear clase en el pasado
   def date_cannot_be_in_the_past
     if dia.present? && dia < Date.today
       errors.add(:dia, "No se puede crear una clase en el pasado. Si es para modificar cancelalá y crea una nueva.")

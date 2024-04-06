@@ -3,10 +3,12 @@ class UserController < ApplicationController
   
   def index
     
-    # falta modulo reservas
     @render_cart = true
-    @mylessons = Lesson.all
-    @Reservations = Reservation.all.where(user_id: current_user)
+    #@mylessons = Lesson.all
+    #@Reservations = Reservation.all.where(user_id: current_user)
+     @q = Reservation.ransack(params[:q])
+     @Reservations = @q.result.where(user_id: current_user).order(created_at: :desc)
+
     
   
   end
