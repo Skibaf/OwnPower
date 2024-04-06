@@ -57,6 +57,11 @@
                               <i class="bi bi-pencil"></i>
                             <% end %>
                           <% end %>
+                          <% if lesson.reservations.any? { |reservation| reservation.payment == 'Pendiente' } %>
+                                  <%= link_to lesson_path(lesson), class: "btn btn-outline-dark btn-sm ms-1", data: { turbo: false } do %>
+                                    <i class="bi bi-coin"></i> <!-- Aquí puedes usar la clase de Bootstrap Icons o cualquier otro icono -->
+                                  <% end %>
+                                <% end %>
                     </tr>
                 <% end %>
               </tbody>

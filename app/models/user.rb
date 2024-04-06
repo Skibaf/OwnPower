@@ -22,6 +22,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :lessons
   has_many :payments
+  has_many :reservations
   
   enum role: [:user, :coach, :admin]
   
