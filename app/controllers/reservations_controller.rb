@@ -43,12 +43,15 @@ class ReservationsController < ApplicationController
 
     end
     
+    def edit_status
+      set_reservation
+    end
     
   
     def update
       respond_to do |format|
         if @reservation.update(reservation_params)
-          format.html { redirect_to lesson_url(@lesson), notice: "Reserva actualizada." }
+          format.html { redirect_to reservation_url(@reservation), notice: "Reserva actualizada." }
           format.json { render :show, status: :ok, location: @reservation }
         else
           format.html { render :edit, status: :unprocessable_entity }

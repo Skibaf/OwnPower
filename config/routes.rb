@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     collection do
       get 'import_csv', to: 'lessons#import_csv'
       post 'import_csv', to: 'lessons#import'
+      
     end
   end
 
@@ -31,8 +32,13 @@ Rails.application.routes.draw do
    post 'payments/notification'
    get 'payments/index'
 
-  #Reservation (pagadas)
+  #Reservation
+  resources :reservations do
+    get 'edit_status', on: :member
+    
+  end
   get 'reservations/index'
+  #Reservation linked to user page
   post 'reservations/create'
 
   #Admin

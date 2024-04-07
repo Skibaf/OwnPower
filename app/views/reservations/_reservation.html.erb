@@ -1,0 +1,20 @@
+<div id="<%= dom_id reservation %>">
+  <p>
+    <strong>ID Reserva:</strong>
+    <%= reservation.id %>
+  </p>
+  <p>
+    <strong>Alumno:</strong>
+    <%= reservation.user.email %>
+  </p>
+  <p>
+    <strong>ID Clase:</strong>
+    <%= reservation.lesson_id %>
+  </p>
+  <p>
+    <strong>Estado:</strong>
+    <%= reservation.status %>
+  </p>
+  <strong>Pago:</strong>
+    <%= reservation.payment %>
+</div>

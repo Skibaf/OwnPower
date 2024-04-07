@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center mt-5"> <!-- Agregado mt-5 para un margen superior -->
+    <div class="col-md-8">
+      <h3> Reserva </h3>
+      <div class="card mb-4"> <!-- Agregado mb-4 para un margen inferior -->
+        <div class="card-body h-100">
+            <%= render @reservation %>
+        </div>
+      </div>
+      
+      <!-- Botones -->
+      <div class="row justify-content-end">
+        <div class="col">
+          <ul class="list-inline text-end">
+            <li class="list-inline-item">
+              <%= link_to "Volver a mis clases", coach_index_path, class:"btn btn-outline-secondary rounded-pill" %>
+            </li>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

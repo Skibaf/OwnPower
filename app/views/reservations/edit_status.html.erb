@@ -1,0 +1,51 @@
+
+<div class="container py-5">
+  <div class="col">
+     <h3> Actualizar pago de la reserva</h3>
+      <div class="card h-100" style="max-width: 500px;">
+        <div class="card-body">
+                <!-- edit_status.html.erb -->
+                
+
+
+                <%= form_with(model: @reservation, url: reservation_path(@reservation), method: :put) do |form| %>
+                  
+                 <div class="mb-3">
+                    <label>ID Reserva:</label>
+                    <span><%= @reservation.id %></span>
+                  </div>
+                  <div class="mb-3">
+                    <label>ID Clase:</label>
+                    <span><%= @reservation.lesson_id %></span>
+                  </div>
+                  <div class="mb-3">
+                    <label>ID Clase:</label>
+                    <span><%= @reservation.user.email %></span>
+                  </div>
+                   <div class="mb-3">
+                    <%= form.label :status, "Estado", class: "form-label" %>
+                    <%= form.select :status, Reservation.statuses.keys.map { |w| [w.humanize, w] }, { include_blank: "Seleccionar nuevo estado" }, { class: "form-select" } %>
+                  </div>
+                  
+                  <div class="mb-3">
+                     <%= form.label :payment, "Pago", class: "form-label" %>
+                     <%= form.text_field :payment, class: "form-control" %>
+                  </div>
+                  <%= form.submit "Guardar pago efectivo", class: "btn btn-warning" %>
+                <% end %>
+          </div>
+          
+       </div>
+       <div class="row justify-content-end">
+          <div class="col">
+          <ul class="list-inline text-end">
+             
+            <li class="list-inline-item">
+              <%= link_to "Volver a clases", lessons_path, class:"btn btn-outline-secondary rounded-pill" %>
+            </li>
+          
+          </ul>
+        </div>
+      </div>
+   </div>
+</div>

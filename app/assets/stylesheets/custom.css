@@ -31,6 +31,10 @@
 
   }
 
+  .mb-3.row .col {
+    display: flex;
+    align-items: center;
+  }
 
   
   /*!

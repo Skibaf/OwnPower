@@ -40,30 +40,36 @@
               </thead>
               <tbody>
                 <% @lessons.each do |lesson| %>
-                  <tr>
-                    <td><%= lesson.id %></td>
-                    <td><%= lesson.coach.email %></td>
-                    <td><%= lesson.category.title %></td>
-                    <td><%= lesson.precio %></td>
-                    <td><%= lesson.status %></td>
-                    <td><%= lesson.dia %></td>
-                    <td><%= lesson.inicio.strftime("%H:%M") %></td>
-                    <td><%= lesson.fin.strftime("%H:%M") %></td>
-                    <td><%= link_to lesson_path(lesson), class: "btn btn-outline-dark btn-sm", data: { turbo: false } do %>
-                         <i class="bi bi-eye"></i> 
+                  
+                    <tr>
+                      <td><%= lesson.id %></td>
+                      <td><%= lesson.coach.email %></td>
+                      <td><%= lesson.category.title %></td>
+                      <td><%= lesson.precio %></td>
+                      <td><%= lesson.status %></td>
+                      <td><%= lesson.dia %></td>
+                      <td><%= lesson.inicio.strftime("%H:%M") %></td>
+                      <td><%= lesson.fin.strftime("%H:%M") %></td>
+                      <td>
+                        <%= link_to lesson_path(lesson), class: "btn btn-outline-dark btn-sm", data: { turbo: false } do %>
+                          <i class="bi bi-eye"></i> 
+                        <% end %>
+                        <% if lesson.disponible? %>
+                          <%= link_to edit_lesson_path(lesson), class: "btn btn-outline-dark btn-sm ms-1", data: { turbo: false } do %>
+                            <i class="bi bi-pencil"></i>
                           <% end %>
-                         <% if lesson.disponible? %> <!-- Comprobación de estado -->
-                            <%= link_to edit_lesson_path(lesson), class: "btn btn-outline-dark btn-sm ms-1", data: { turbo: false } do %>
-                              <i class="bi bi-pencil"></i>
-                            <% end %>
+                        <% end %>
+                        <% lesson.reservations.each do |reservation| %>
+                        <% if reservation.payment == 'Pendiente' %>
+                          <%= link_to edit_status_reservation_path(reservation), class: "btn btn-outline-dark btn-sm ms-1", data: { turbo: false } do %>
+                            <i class="bi bi-coin"></i>
                           <% end %>
-                          <% if lesson.reservations.any? { |reservation| reservation.payment == 'Pendiente' } %>
-                                  <%= link_to lesson_path(lesson), class: "btn btn-outline-dark btn-sm ms-1", data: { turbo: false } do %>
-                                    <i class="bi bi-coin"></i> <!-- Aquí puedes usar la clase de Bootstrap Icons o cualquier otro icono -->
-                                  <% end %>
-                                <% end %>
+                        <% end %>
+                      </td>
                     </tr>
+                  <% end %>
                 <% end %>
+
               </tbody>
             </table>
           </div>
@@ -74,7 +80,8 @@
   <Br/>
   <div class="mt-3">
     <ul class="form-but">
-      <%= link_to "Back", :back, class: "btn btn-outline-dark float-end" %>
+      <%= link_to "Back", :back, class: "btn btn-outline-secondary rounded-pill float-end" %>
     </ul>
   </div>
 </div>
+<Br/>

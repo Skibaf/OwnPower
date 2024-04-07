@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="col">
-      <div class="card h-100" style="max-width: 500px;">
+      <div class="card h-100" style="max-width: 600px;">
         <div class="card-body">
               <%= form_with(model: lesson, local: true, class: "needs-validation", novalidate: true) do |form| %>
             
@@ -55,8 +55,6 @@
                     <%= form.time_select :fin, { minute_step: 30 }, class: "form-control" %>
                   </div>
                 </div>
-
-
               <%= form.submit "Guardar", class: "btn btn-warning" %>
 
           <% end %>
