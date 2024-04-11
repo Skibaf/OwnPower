@@ -46,7 +46,7 @@ class Lesson < ApplicationRecord
   
   #Atributos para usar search en las vistas
   def self.ransackable_attributes(auth_object = nil)
-    ["category_id", "coach_id", "created_at", "dia", "fin", "inicio", "precio", "status", "updated_at"]
+    [ "category_id", "coach_id", "created_at", "dia", "fin", "inicio", "precio", "status", "updated_at"]
   end
 
   def self.ransackable_associations(auth_object = nil)

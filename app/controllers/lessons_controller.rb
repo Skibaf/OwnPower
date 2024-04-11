@@ -7,7 +7,9 @@ class LessonsController < ApplicationController
   def index
     @lesson = Lesson.new
     @q = Lesson.ransack(params[:q])
-    @lessons = @q.result.where(coach_id: current_user).includes(:category, :coach).order(dia: :asc)
+    @lessons = @q.result.where(coach_id: current_user).includes(:category, :coach).order(dia: :desc)
+    @pagy, @lessons = pagy(@lessons, items: 15)
+    
   end
 
   # GET /lessons/1 or /lessons/1.json

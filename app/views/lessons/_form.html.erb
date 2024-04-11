@@ -3,6 +3,7 @@
   <div class="col">
       <div class="card h-100" style="max-width: 600px;">
         <div class="card-body">
+            
               <%= form_with(model: lesson, local: true, class: "needs-validation", novalidate: true) do |form| %>
             
               <% if lesson.errors.any? %>
@@ -15,11 +16,9 @@
                   </ul>
                 </div>
               <% end %>
-
-              <div class="mb-3">
-                <%= form.label :coach_id, "Coach", class: "form-label" %>
-                <%= collection_select(:lesson, :coach_id, User.all.where(role: "coach"), :id, :email, { include_blank: "Seleccionar Coach" }, { class: "form-select" }) %>
-              </div>
+               
+               <%= form.hidden_field :coach_id, value: current_user.id%>
+             
 
               <div class="mb-3">
                 <%= form.label :category_id, "Categoría", class: "form-label" %>
