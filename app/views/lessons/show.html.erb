@@ -1,29 +1,31 @@
 <div class="container">
   <div class="row justify-content-center mt-5"> <!-- Agregado mt-5 para un margen superior -->
     <div class="col-md-8">
-      <h3> Clase </h3>
+      <h3> Clase # <%= @lesson.id %></h3>
       <div class="card mb-4"> <!-- Agregado mb-4 para un margen inferior -->
         <div class="card-body">
           <%= render @lesson %>
         </div>
       </div>
-      
-      <!-- Botones -->
-      <div class="row justify-content-end">
-        <div class="col">
-          <ul class="list-inline text-end">
-             <% unless @lesson.reservada? %> <!-- Verifica si la lección está reservada -->       
-              <li class="list-inline-item">
-                <%= link_to "Editar", edit_lesson_path(@lesson), class:"btn btn-outline-secondary rounded-pill" %>
-              </li>
-            <% end %>
-            <li class="list-inline-item">
-              <%= link_to "Volver a clases", lessons_path, class:"btn btn-outline-secondary rounded-pill" %>
-            </li>
-          
-          </ul>
-        </div>
-      </div>
+    </div>
+  </div>
+
+  <!-- Botones con margen superior -->
+  <div class="row justify-content-end mt-5"> <!-- Agregado mt-5 para un margen superior -->
+    <div class="col">
+      <ul class="list-inline text-end">
+        <% unless @lesson.reservada? %> <!-- Verifica si la lección está reservada -->       
+          <li class="list-inline-item">
+            <%= link_to "Editar", edit_lesson_path(@lesson), class:"btn btn-outline-secondary rounded-pill" %>
+          </li>
+        <% end %>
+        <li class="list-inline-item">
+          <%= link_to "Volver a clases", lessons_path, class:"btn btn-outline-secondary rounded-pill" %>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
+
+
+
