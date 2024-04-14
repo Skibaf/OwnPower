@@ -53,5 +53,14 @@ class User < ApplicationRecord
     ["email", "id", "last_name", "fisrt_name"]
    end
 
+   def initials
+      # Obtener el primer y último nombre del usuario
+      first_name_initial = fisrt_name.present? ? fisrt_name[0] : ''
+      last_name_initial = last_name.present? ? last_name[0] : ''
+  
+      # Concatenar las iniciales y devolverlas en mayúscula
+      "#{first_name_initial}#{last_name_initial}".upcase
+    end
+
 
 end
