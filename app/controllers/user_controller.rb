@@ -15,7 +15,7 @@ class UserController < ApplicationController
     @render_cart = true
     @query = Lesson.ransack(params[:q])
     @lessons_res = @query.result.includes(:category, :coach).order(dia: :asc).upcoming.disponibles
-    @pagy, @lessons_res = pagy(@lessons_res)
+    @pagy, @lessons_res = pagy(@lessons_res, items: 10)
     
   end
 end

@@ -1,14 +1,14 @@
 
   <%= turbo_frame_tag "cart" do %>
     <% if @cart.orderables.count > 0 %>
-       <h4 class="fw-bold p-1 mb-1">Mi carrito</h4>
-        <div class="row">
+       <h4 class="fw-bold p-2 ">Mi carrito</h4>
+        <div class="row ">
             <div class="col-9 ">
                 <hr class="divider">
                 <%= render "cart/orderables" %>
             </div>
             
-            <div class="col-3 ">
+            <div class="col-3">
                   <div class="row justify-content-center align-items-center mb-2">
                     <p class="fw-bold mb-2"><strong>Total ARS:</strong> <%= @cart.total %></p>
                   </div>
@@ -24,7 +24,7 @@
      <% else %>
         <div class="text-center p-5"> <!-- Mayor espacio para el mensaje de carrito vacío -->
             <p class="fs-5 fw-bold">El carrito está vacío</p> <!-- Texto más grande y en negrita -->
-           <p class="fs-6">¡Agrega algunos productos para comenzar!</p> <!-- Texto más pequeño -->
+           <p class="fs-6">¡Agrega la clase que quieras reservar  para comenzar!</p> <!-- Texto más pequeño -->
         </div>
     <% end %>
  <% end %>
