@@ -1,7 +1,27 @@
 ---
 engine_version: 0.4.26
-file_version: 2024-03-23 22:24:55.800532000 Z
-resources: []
+file_version: 2024-04-20 17:36:08.395154000 Z
+resources:
+- name: category
+  preferences:
+    display_name: Categorias
+  updated_at: 2024-04-20 17:36:08.395154000 +00:00
+- name: lesson
+  preferences:
+    display_name: Clases
+  updated_at: 2024-04-20 17:35:48.238883000 +00:00
+- name: payment
+  preferences:
+    display_name: Pagos
+  updated_at: 2024-04-20 17:36:03.703488000 +00:00
+- name: reservation
+  preferences:
+    display_name: Reservaciones
+  updated_at: 2024-04-20 17:35:55.346096000 +00:00
+- name: user
+  preferences:
+    display_name: Usuarios
+  updated_at: 2024-04-20 17:35:37.467804000 +00:00
 configs:
 - key: header.links
   value:

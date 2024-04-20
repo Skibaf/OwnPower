@@ -47,29 +47,17 @@ class LessonsController < ApplicationController
   
   def import
     
-     
-    # redirect if bad data
-      #file = params[:file]
-      #return redirect_to import_csv_lessons_path, alert: 'No file selected' unless file
-      #return redirect_to import_csv_lessons_path, alert: 'Please select CSV file instead' unless file.content_type == 'text/csv'
       return redirect_to request.referer, notice: 'No file added' if params[:file].nil?
       return redirect_to request.referer, notice: 'Only CSV files allowed' unless params[:file].content_type == 'text/csv'
-
-   # import data
-      #csvImportService = CsvImportService.new(file)
-      #csvImportService.import
       
-      result = CsvImportService.new.import(params[:file])
+      result = CsvImportService.new.import(params[:file], current_user)
       if result[:errors].empty?
         redirect_to request.referer, notice: "#{result[:count]} records imported successfully."
       else
         redirect_to request.referer, notice: result[:errors].join('. ')
-        #render 'import_csv'
+        
       end
     
-    # redirect with notice
-    #redirect_to lessons_path,
-    #notice: "#{csvImportService.number_imported_with_last_run}  imported"
   end
   
 

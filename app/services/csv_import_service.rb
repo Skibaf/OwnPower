@@ -2,37 +2,46 @@ require 'csv'
 
 class CsvImportService
   
-  def import(file)
-    errors = []
+  def import(file, current_user)
     count = 0
-    
-    opened_file = File.open(file)
-    options = { headers: true, col_sep: ',' }
-    
-    CSV.foreach(opened_file, **options) do |row|
+    errors = []
+  
+    CSV.foreach(file.path, col_sep: ";", headers: true) do |row|
+      p row
+      lesson_hash = row.to_h.transform_keys(&:downcase)
       
-      lesson_hash = {
-        coach_id: User.find_by(username: row['coach'])&.id,
-        category_id: Category.find_by(title: row['category'])&.id,
-        precio: row['precio'],
-        status: row['status'],
-        dia: row['dia'],
-        inicio: row['inicio'],
-        fin: row['fin']
-      }
+      #toma coach
+      coach_id = current_user.id
+      puts "Coach: #{coach_id}"
+
+      #toma categoria
+      category_title = lesson_hash["category"]
+      puts "Category title: #{category_title}"
+      category = Category.find_by(title: category_title)
+      puts "category #{category}"
+      precio = lesson_hash["precio"]
+      puts "preciof #{precio}"
       
+      if category.nil?
+        errors << "Category not found for title: #{category_title}"
+        next
+      end
+  
+      lesson_hash["coach_id"] = coach_id
+      lesson_hash["category_id"] = category
+  
       lesson = Lesson.new(lesson_hash)
-      
+  
       if lesson.save
         count += 1
       else
-        errors << "Error importing lesson at line #{opened_file.lineno}: #{lesson.errors.full_messages.join(', ')}"
+        errors << "Error importing lesson: #{lesson.errors.full_messages.join(', ')}"
       end
     end
-    
+  
     { count: count, errors: errors }
   end
-
+  
 end
 
 
