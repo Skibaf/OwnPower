@@ -126,6 +126,16 @@
   max-width: 200px; /* Establecer el ancho máximo según tus necesidades */
 }
 
+@media screen and (min-width:767px){
+  #mainLesson {
+    
+    background: url('/images/c4.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    width: 100%;
+   
+}}
 
 
 /*!

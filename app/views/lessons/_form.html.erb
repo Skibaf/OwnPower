@@ -1,9 +1,15 @@
 
 <div class="container">
-  <div class="col">
+  <div class="row align-items-center">
+      <div class="col-lg-6 d-none d-lg-block">
+        <div id="mainLesson"> </div>
+  </div>
+  <div class="col-lg-6">
+       <h2 class="p-3 h4 text-center"><i class="fas fa-lock me-2"></i> Nueva Clase</h2>
+
       <div class="card h-100" style="max-width: 600px;">
         <div class="card-body">
-            
+             
               <%= form_with(model: lesson, local: true, class: "needs-validation", novalidate: true) do |form| %>
             
               <% if lesson.errors.any? %>
@@ -53,7 +59,8 @@
                     <%= form.label :fin, "Fin", class: "form-label mt-3" %>
                     <%= form.time_select :fin, { minute_step: 30 }, class: "form-control" %>
                   </div>
-                </div>
+              </div>
+             
               <%= form.submit "Guardar", class: "btn btn-warning" %>
 
           <% end %>

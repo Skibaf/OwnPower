@@ -1,6 +1,6 @@
 ---
 engine_version: 0.4.26
-file_version: 2024-04-20 17:36:08.395154000 Z
+file_version: 2024-05-16 22:09:03.559865000 Z
 resources:
 - name: category
   preferences:
@@ -35,6 +35,11 @@ configs:
     path: http://127.0.0.1:3000/home
     link_type: header
   updated_at: 2024-03-23 22:24:55.800532000 +00:00
+- key: homepage.layout
+  value:
+  - type: dashboard
+    id: 1
+  updated_at: 2024-05-16 22:09:03.559865000 +00:00
 - key: resources.order
   value:
   - user
@@ -61,8 +66,229 @@ configs:
   - encrypted_password
   - reset_password_token
   updated_at: 2024-03-23 22:16:46.006677000 +00:00
-queries: []
-dashboards: []
+queries:
+- id: 1
+  name: Usuarios Activos
+  sql_body: |
+    SELECT COUNT(*) AS usuarios_activos
+    FROM users
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: value
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:04:30.066666000 +00:00
+- id: 2
+  name: Nuevos usuarios
+  sql_body: |-
+    SELECT COUNT(*) AS nuevos_usuarios
+    FROM users
+    WHERE created_at > NOW() - INTERVAL '30 days';
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: value
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:01:27.270693000 +00:00
+- id: 3
+  name: Reservas en los ultimos 30 dias
+  sql_body: |-
+    SELECT COUNT(*) AS reservas_30dias
+    FROM reservations
+    WHERE created_at > NOW() - INTERVAL '30 days';
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: value
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:04:40.313107000 +00:00
+- id: 4
+  name: Cantidad Reservas Pagadas
+  sql_body: |-
+    SELECT COUNT(*)
+    FROM reservations
+    WHERE status = 1;
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: value
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:02:02.305757000 +00:00
+- id: 5
+  name: Cantidad reservas en efectivo
+  sql_body: |-
+    SELECT COUNT(*) AS reservas_efectivo
+    FROM reservations
+    WHERE status = 0;
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: value
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:04:53.378528000 +00:00
+- id: 6
+  name: Total ventas
+  sql_body: |-
+    SELECT SUM(precio) AS Total_ventas
+    FROM lessons
+    WHERE status=1;
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: value
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:05:09.112907000 +00:00
+- id: 7
+  name: Ganancias reservas en los ultimos 30 dias
+  sql_body: |
+    SELECT SUM(precio)
+    FROM lessons
+    JOIN reservations ON reservations.lesson_id = lessons.id
+    WHERE lessons.status = 1
+      AND reservations.created_at > NOW() - INTERVAL '30 days';
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: value
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:01:51.155892000 +00:00
+- id: 8
+  name: Total reservas por profesor en los ultimos 30 dias
+  sql_body: |-
+    SELECT users.email AS Profesor , SUM(lessons.precio) AS Total
+    FROM lessons
+    JOIN reservations ON reservations.lesson_id = lessons.id
+    JOIN users ON lessons.coach_id = users.id
+    WHERE lessons.status = '1' AND reservations.created_at > NOW() - INTERVAL '30 days'
+    GROUP BY users.email;
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: table
+    visualization_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:04:04.140471000 +00:00
+- id: 9
+  name: Ventas total por profesor
+  sql_body: |-
+    SELECT users.email AS Profesor , SUM(lessons.precio) AS total_reserved_price
+    FROM lessons
+    JOIN reservations ON reservations.lesson_id = lessons.id
+    JOIN users ON lessons.coach_id = users.id
+    WHERE lessons.status = '1'
+    GROUP BY users.email;
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: table
+    visualization_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 21:47:23.873250000 +00:00
+- id: 10
+  name: Totales por profesor y mes
+  sql_body: "SELECT \n  users.email AS profesor, \n  TO_CHAR(DATE_TRUNC('month', reservations.created_at),
+    'TMMonth') AS month, \n  SUM(lessons.precio) AS total_reserved_price\nFROM \n
+    \ lessons\nJOIN \n  reservations ON reservations.lesson_id = lessons.id\nJOIN
+    \n  users ON lessons.coach_id = users.id\nWHERE \n  lessons.status = 1\n  AND
+    reservations.created_at > NOW() - INTERVAL '1 year'\nGROUP BY \n  users.email,
+    \n  DATE_TRUNC('month', reservations.created_at)\nORDER BY \n  users.email, \n
+    \ DATE_TRUNC('month', reservations.created_at);\n"
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: table
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:02:33.159260000 +00:00
+- id: 11
+  name: Ventas por mes
+  sql_body: "SELECT \n  TO_CHAR(DATE_TRUNC('month', reservations.created_at), 'TMMonth')
+    AS month, \n  SUM(lessons.precio) AS total_reserved_price\nFROM \n  lessons\nJOIN
+    \n  reservations ON reservations.lesson_id = lessons.id\nWHERE \n  lessons.status
+    = 1\n  AND reservations.created_at > NOW() - INTERVAL '1 year'\nGROUP BY \n  DATE_TRUNC('month',
+    reservations.created_at)\nORDER BY \n  DATE_TRUNC('month', reservations.created_at);"
+  description:
+  preferences:
+    query_type: sql
+    database: primary
+    visualization: row_chart
+    visualization_options:
+      label_format: decimal
+      label_format_options: {}
+    variables: []
+  tags: []
+  updated_at: 2024-05-16 22:07:40.267110000 +00:00
+dashboards:
+- id: 1
+  title: Dashboard
+  description:
+  preferences:
+    layout:
+    - title: Ganancias reservas en los ultimos 30 dias
+      query_id: 7
+      size: 1x1
+    - title: Total ventas
+      query_id: 6
+      size: 1x1
+    - title: Cantidad reservas en efectivo
+      query_id: 5
+      size: 1x1
+    - title: Cantidad Reservas Pagadas
+      query_id: 4
+      size: 1x1
+    - title: Ventas por mes
+      query_id: 11
+      size: 3x2
+    - title: Totales por profesor y mes
+      query_id: 10
+      size: 3x2
+    variables: []
+    autorefresh_interval: 60000
+  tags: []
+  updated_at: 2024-05-16 22:08:19.399306000 +00:00
 forms: []
 alerts: []
 api_configs:
