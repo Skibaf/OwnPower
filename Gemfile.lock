@@ -170,6 +170,7 @@ GEM
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0206)
+    mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.21.1)
     motor-admin (0.4.26)
@@ -333,6 +334,7 @@ DEPENDENCIES
   jsbundling-rails
   letter_opener
   mercadopago-sdk
+  mini_magick
   motor-admin
   pagy
   pg (~> 1.1)

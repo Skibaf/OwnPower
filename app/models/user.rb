@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :lessons
   has_many :payments
   has_many :reservations
+  has_one_attached :avatar
   
   enum role: [:user, :coach, :admin]
   

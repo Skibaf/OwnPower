@@ -46,19 +46,36 @@ class LessonsController < ApplicationController
   # POST /lessons or /lessons.json
   
   def import
-    
-      return redirect_to request.referer, notice: 'No file added' if params[:file].nil?
-      return redirect_to request.referer, notice: 'Only CSV files allowed' unless params[:file].content_type == 'text/csv'
-      
-      result = CsvImportService.new.import(params[:file], current_user)
-      if result[:errors].empty?
-        redirect_to request.referer, notice: "#{result[:count]} records imported successfully."
-      else
-        redirect_to request.referer, notice: result[:errors].join('. ')
-        
+  
+      if params[:file].nil?
+        return redirect_to request.referer, notice: 'No file added'
       end
-    
-  end
+
+      if params[:file].content_type != 'text/csv'
+        return redirect_to request.referer, notice: 'Only CSV files allowed'
+      end
+
+      begin
+        csv_text = File.read(params[:file].path)
+        csv = CSV.parse(csv_text, headers: true, header_converters: :symbol, col_sep: ',')
+        first_row = csv.first
+
+        if first_row.nil?
+          return redirect_to request.referer, notice: "El archivo CSV está vacío o no tiene un formato correcto."
+        end
+
+        flash[:notice] = "Primera fila del CSV: #{first_row.to_hash}"
+
+        errors = CsvImportService.new(params[:file], current_user).import
+        if errors.empty?
+          redirect_to request.referer, notice: "Records imported successfully."
+        else
+          redirect_to request.referer, alert: errors.join("\n")
+        end
+      rescue => e
+        redirect_to request.referer, alert: "Error al leer el archivo CSV: #{e.message}"
+      end
+end
   
 
   def create

@@ -1,9 +1,27 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-10"> <!-- Aumenta el tamaño de la columna para hacer la tarjeta más grande -->
+    <div class="col-md-10"> 
       <h3 class="mb-4">Crear clases - Importar</h3>
       <div class="card p-4">
-        <%= form_with url: import_csv_lessons_path, method: :post, class: "mb-3" do |f| %>
+        <!-- <% if flash[:alert] %>
+          <div class="alert alert-danger">
+            <strong>Errores de Importación:</strong>
+            <ul>
+              <% flash[:alert].split("\n").each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <% if flash[:notice] %>
+          <div class="alert alert-info">
+            <strong>Información:</strong>
+            <p><%= flash[:notice] %></p>
+          </div>
+        <% end %> -->
+
+        <%= form_with url: import_csv_lessons_path, method: :post, class: "mb-3", multipart: true do |f| %>
           <div class="input-group">
             <%= f.file_field :file, accept: ".csv", class: "form-control" %>
             <button type="submit" class="btn btn-primary">Subir</button>
@@ -13,7 +31,7 @@
     </div>
   </div>
   
-  <!-- Botón "Volver a clases" alineado a la derecha -->
+  <!-- Botón "Volver a clases"  -->
   <div class="row justify-content-end mt-3">
     <div class="col-md-10">
       <div class="text-end"> <!-- Alinea el contenido a la derecha -->
@@ -22,5 +40,6 @@
     </div>
   </div>
 </div>
+
 
 

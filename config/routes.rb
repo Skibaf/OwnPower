@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   #users
-   get 'user/index'
+   get 'user/index', to: 'user#index'
    get 'user/reserve'
    get 'cart', to: 'cart#show'
    post 'cart/add'

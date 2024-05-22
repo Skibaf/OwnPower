@@ -16,6 +16,7 @@
                   <th><%= sort_link(@q, :created_at, "Fecha reserva") %></th>
                   <th scope="col">ID Clase</th>
                   <th scope="col">Fecha Clase</th>
+                  <th scope="col">Hora Inicio</th>
                   <th scope="col">Category</th>
                   <th><%= sort_link(@q, :status, "Estado") %></th>
                   <th><%= sort_link(@q, :payment, "Pago") %></th>
@@ -30,6 +31,7 @@
                         <td><%= r.created_at.strftime('%Y-%m-%d') %></td>
                         <td><%= r.lesson_id %></td>
                         <td><%= r.lesson.dia %></td>
+                        <td><%= r.lesson.inicio.strftime("%H:%M") %></td>
                         <td><%= r.lesson.category.title %></td>
                         <td><% if r.status == 'Pendiente' %>
                             <span class="text-danger">Pendiente</span>

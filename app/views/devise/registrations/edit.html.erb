@@ -1,44 +1,65 @@
 <div class="container py-3">
   <h2 class="p-2 h4 text-center"><i class="fas fa-lock me-2"></i> Mis datos</h2>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <div class="form-group mb-3 w-50">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <!-- Primera columna: Avatar -->
+          <div class="col-md-4 border-end d-flex align-items-center justify-content-center">
+              <div class="d-flex flex-column align-items-center py-2">
+                <% if current_user.avatar.attached? %>
+                  <%= image_tag(current_user.avatar, class: "rounded-circle mb-3", style: "width: 200px; height: 200px;") %>
+                <% else %>
+                  <div class="rounded-circle bg-secondary d-flex justify-content-center align-items-center" style="width: 200px; height: 200px;">
+                    <strong class="text-white" style="font-size: 50px;"><%= resource.initials %></strong>
+                  </div>
+                <% end %>
+                <div class="form-group mt-3 text-center">
+                  <%= f.label :avatar, "Subir avatar", class: "btn btn-warning mb-2" %>
+                  <%= f.file_field :avatar, class: "d-none" %>
+                  <span id="avatar-file-name"></span>
+                </div>
+              </div>
+            </div>
+
+          <!-- Segunda columna: Datos del perfil -->
+          <div class="col-md-8">
+            <div class="form-group mb-3", style="max-width: 400px;">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Esperando confirmacion de : <%= resource.unconfirmed_email %></div>
+            <% end %>
+            <div class="form-group mb-3", style="max-width: 400px;">
+              <%= f.label :password %> <i>(Dejalo en blanco si no quieres cambiarlo)</i><br />
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %> caracteres minimo</em>
+              <% end %>
+            </div>
+            <div class="form-group mb-3", style="max-width: 400px;">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            </div>
+            <div class="form-group mb-3">
+              <%= f.label :current_password %> <i><strong>(Necesitamos tu actual password para confirmar los cambios)</i></strong><br />
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", style:"max-width: 400px;" %>
+            </div>
+          </div>
+        </div>
       </div>
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Esperando confirmacion de : <%= resource.unconfirmed_email %></div>
-      <% end %>
-      <div class="form-group mb-3 w-50">
-        <%= f.label :password %> <i>(Dejalo en blanco si no quieres cambiarlo)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> caracteres minimo</em>
-        <% end %>
-      </div>
-      <div class="form-group mb-3 w-50">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control"%>
-      </div>
-      <div class="form-group mb-3 w-50">
-        <%= f.label :current_password %> <i>(Necesitamos tu actual password para confirmar los cambios)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
-      </div>
-      <div class="mb-2 d-flex align-items-center justify-content-center py-3">
-        <ul class="form-but">
-          <%= f.submit "Actualizar mi informacion", class:"btn btn-medium btn-warning rounded-pill" %>
-        </ul>
-        <ul class="form-but">
-          <%= link_to "Cancelar", :back, class:"btn btn-medium btn-outline-secondary rounded-pill" %>
-        </ul>
+      <div class="card-footer d-flex justify-content-end border-top">
+        <%= f.submit "Actualizar mi información", class: "btn btn-medium btn-warning rounded-pill me-2" %>
+        <%= link_to "Cancelar", :back, class: "btn btn-medium btn-outline-secondary rounded-pill" %>
       </div>
     </div>
   <% end %>
+  <div class="d-flex justify-content-center mt-3">
+    <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-small btn-danger round" %>
+  </div>
 </div>
-<div class="d-flex flex-column justify-content-center align-items-center">
-  <div> <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete , class:"btn btn-small btn-danger round" %></div>
-</div>
-</div>
-</div>
+
+

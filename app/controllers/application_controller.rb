@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:username,:email,  :fisrt_name, :last_name, :role])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:email, :fisrt_name, :last_name, :role])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:email, :fisrt_name, :last_name, :role, :avatar])
+      
     end
     
     #inicializa el carrito
