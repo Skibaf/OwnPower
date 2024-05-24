@@ -43,7 +43,7 @@ class LessonsController < ApplicationController
     end
   end
 
-  # POST /lessons or /lessons.json
+  # import de clases por parte de los profesores
   
   def import
   
@@ -68,7 +68,8 @@ class LessonsController < ApplicationController
 
         errors = CsvImportService.new(params[:file], current_user).import
         if errors.empty?
-          redirect_to request.referer, notice: "Records imported successfully."
+          #redirect_to request.referer, notice: "#{params[:file].readlines.size - 1} clases importadas exitosamente."
+          redirect_to request.referer, notice: "Records importados Exitosamente."
         else
           redirect_to request.referer, alert: errors.join("\n")
         end

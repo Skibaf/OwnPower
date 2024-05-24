@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-10"> 
-      <h3 class="mb-4">Crear clases - Importar</h3>
+      <h3 class="mb-4">Creacion de clases - Importar desde archivo</h3>
       <div class="card p-4">
         <!-- <% if flash[:alert] %>
           <div class="alert alert-danger">
@@ -20,11 +20,25 @@
             <p><%= flash[:notice] %></p>
           </div>
         <% end %> -->
+        
+
+        <div class="alert alert-secondary">
+          <strong>Tips para Importar Clases:</strong>
+          <ul>
+            <li>Asegúrese de que el archivo esté en formato CSV.</li>
+            <li>El archivo debe tener las columnas: <code>dia, inicio, fin, precio, categoria</code>.</li>
+            <li>El dia es la fecha de la clase. La misma debe ser en el futuro</li>
+            <li>Las fechas deben estar en formato <code>dd/mm/aa</code>.</li>
+            <li>Los horarios deben estar en formato <code>HH:MM</code>.</li>
+            <li>Asegúrese de que la categoría este dentro de las habilitadas.</code>.</li>
+            <li>Todas las clases serán creadas con estado disponible .</code>.</li>
+          </ul>
+        </div>
 
         <%= form_with url: import_csv_lessons_path, method: :post, class: "mb-3", multipart: true do |f| %>
           <div class="input-group">
             <%= f.file_field :file, accept: ".csv", class: "form-control" %>
-            <button type="submit" class="btn btn-primary">Subir</button>
+            <button type="submit" class="btn btn-warning">Subir</button>
           </div>
         <% end %>
       </div>
@@ -34,7 +48,7 @@
   <!-- Botón "Volver a clases"  -->
   <div class="row justify-content-end mt-3">
     <div class="col-md-10">
-      <div class="text-end"> <!-- Alinea el contenido a la derecha -->
+      <div class="text-end"> 
         <%= link_to "Volver a clases", lessons_path, class: "btn btn-outline-secondary rounded-pill" %>
       </div>
     </div>

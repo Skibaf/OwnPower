@@ -1,17 +1,14 @@
-<div class="container">
-  <div class="row justify-content-center mt-5">
-     <div class="col-md-8">
-          <h5>Modificar clase </h5>
-          <%= render "form", lesson: @lesson %>
-      </div>
-    </div>
-    <br>
-    <br/>
-    <div class="row ">
+<div class="container p-4">
+      <h2 class="p-3 h4 text-center"><i class="fas fa-lock me-2"></i> Modificar Clase</h2>
+       <%= render "form", lesson: @lesson %>
+  
+</div>
+<br>
+  
+<div class="row ">
         <ul class="list-inline text-end">
           <li class="list-inline-item">
             <%= link_to "Volver a clases", lessons_path, class:"btn btn-outline-secondary rounded-pill" %>
           </li>
         </ul>
-    </div>
-</div>
+ </div>

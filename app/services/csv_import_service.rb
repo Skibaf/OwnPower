@@ -13,7 +13,7 @@ class CsvImportService
 
   def import
     CSV.foreach(@file.path, headers: true, header_converters: :symbol, col_sep: ',') do |row|
-      next if row.to_hash.values.all?(&:nil?)  # Omitir filas vacías
+      next if row.to_hash.values.all?(&:nil?)  # Omite filas vacías
 
       category = Category.find_by(title: row[:categoria])
       unless category
@@ -40,10 +40,10 @@ class CsvImportService
         dia: dia,
         inicio: inicio,
         fin: fin,
-        precio: row[:precio].to_i,  # Convertir precio a entero
+        precio: row[:precio].to_i,  # Convierte campo precio a entero
         category: category,
         coach: @user,  # Asigna el current_user como coach
-        status: :disponible  # Por defecto
+        status: :disponible  # Asigna por defecto el estado disponible
       )
 
       unless lesson.save
