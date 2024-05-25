@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   get '/about', to: 'main#about'
   get '/home', to: 'main#home'
-  
+  get '/profes', to: 'main#profes'
 
   resources :categories
   

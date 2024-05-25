@@ -136,10 +136,59 @@
     width: 100%;
    
 }}
-
-
 /*!
   * end changes 
+*/
+
+/*!
+  * pagina profes
+*/
+
+.profesor-card {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+.profesor-img {
+  max-width: 100%;
+  height: auto;
+}
+.profesor-info {
+  padding: 20px;
+  height: 100%;
+}
+.profesor-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.profesor-text {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+.profesor-section {
+  margin-bottom: 20px;
+}
+.profesor-section i {
+  color: #333;
+  margin-right: 10px;
+}
+.bg-yellow {
+  background-color: #f1d70e;
+}
+.bg-white {
+  background-color: #ffffff;
+}
+.d-flex-equal > .col-md-6 {
+  display: flex;
+  flex-direction: column;
+}
+.d-flex-equal > .col-md-6 > .card {
+  flex: 1;
+}
+
+/*!
+  * fin pagina profes
 */
 
 
