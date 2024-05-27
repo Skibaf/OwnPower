@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/about', to: 'main#about'
   get '/home', to: 'main#home'
   get '/profes', to: 'main#profes'
+  post '/enviar_consulta', to: 'main#enviar_consulta', as: 'enviar_consulta'
 
   resources :categories
   

@@ -68,7 +68,7 @@ class LessonsController < ApplicationController
 
         errors = CsvImportService.new(params[:file], current_user).import
         if errors.empty?
-          #redirect_to request.referer, notice: "#{params[:file].readlines.size - 1} clases importadas exitosamente."
+          
           redirect_to request.referer, notice: "Records importados Exitosamente."
         else
           redirect_to request.referer, alert: errors.join("\n")
@@ -76,7 +76,7 @@ class LessonsController < ApplicationController
       rescue => e
         redirect_to request.referer, alert: "Error al leer el archivo CSV: #{e.message}"
       end
-end
+  end
   
 
   def create

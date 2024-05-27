@@ -84,73 +84,64 @@
  <section class="p-4">
   <div class="container">
     <h2 class="text-center mb-4">Preguntas frecuentes</h2>
-      <div class="accordion " id="accordionE">
-      <div class="accordion-item">
-          <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-1" aria-expanded="true" aria-controls="collapseOne">
-            ¿Tiene un costo registrarme?
-          </button>
-        </h2>
-        <div id="question-1" class="accordion-collapse collapse" data-bs-parent="#accordionE">
-          <div class="accordion-body"> Registrarte es gratis! No es necesario agregar metodos de pagos. solo cuando quieras realizar una reserva se solicitará.</div>
-        </div>
+    <div class="card mb-3 border-warning">
+      <div class="card-header bg-warning text-dark">
+        ¿Tiene un costo registrarme?
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-2" aria-expanded="true" aria-controls="collapseOne">
-            ¿Puedo realizar reservas para el mismo dia?
-          </button>
-        </h2>
-        <div id="question-2" class="accordion-collapse collapse" data-bs-parent="#accordionE">
-          <div class="accordion-body">Por el momento solo es posible para reservar con al menos 1 dia de anticipacion .</div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-3" aria-expanded="true" aria-controls="collapseOne">
-            ¿Porque no encuentro clases disponibles de un profesor?
-          </button>
-        </h2>
-        <div id="question-3" class="accordion-collapse collapse" data-bs-parent="#accordionE">
-          <div class="accordion-body">Esto puede deberse a multiples razones. Consulta con tu profesor ya que puede estar inactivo dado vacaiones u otros motivos. </div>
-        </div>
+      <div class="card-body">
+        Registrarte es gratis! No es necesario agregar métodos de pagos. Solo cuando quieras realizar una reserva se solicitará.
       </div>
     </div>
-</div>
- </section>
+    <div class="card mb-3 border-warning">
+      <div class="card-header bg-warning text-dark">
+        ¿Puedo realizar reservas para el mismo día?
+      </div>
+      <div class="card-body">
+        Por el momento solo es posible reservar con al menos 1 día de anticipación.
+      </div>
+    </div>
+    <div class="card mb-3 border-warning">
+      <div class="card-header bg-warning text-dark">
+        ¿Por qué no encuentro clases disponibles de un profesor?
+      </div>
+      <div class="card-body">
+        Esto puede deberse a múltiples razones. Consulta con tu profesor ya que puede estar inactivo debido a vacaciones u otros motivos.
+      </div>
+    </div>
+  </div>
+</section>
+
 
  <!--contact form --->
-<div class="container mt-5">
-<div class="card text-bg-secondary mb-3">
+<section class="mt-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Contactanos!</h2>
+    <div class="card text-bg-secondary mb-3">
+      <div class="card-body">
+        <%= form_tag enviar_consulta_path, id: "consultaForm" do %>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="col-md-12">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea class="form-control" id="mensaje" name="mensaje" rows="3" required></textarea>
+            </div>
+            <div class="col-md-12">
+              <%= submit_tag "Enviar consulta", class: "btn btn-warning" %>
+            </div>
+          </div>
+          
+        <% end %>
 
- <h3 class="card hearder text-center p-2">Contactanos!</h3>
- <div class="card-body">
-      <form class="row g-3">
-          <div class="col-md-6">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" required>
-          </div>
-          <div class="col-md-6">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellido" required>
-          </div>
-          <div class="col-md-8">
-            <label for="emailinfo" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="emailinfo" required>
-          </div>
-          <div class="col-md-4">
-            <label for="telefono" class="form-label">Telefono</label>
-            <input type="text" class="form-control" id="telefono" placeholder="+54 9 11 36006677">
-          </div>
-          <div class="col-md-12">
-            <label for="comentarios" class="form-label">¿Como podemos ayudarte?</label>
-            <textarea class="form-control" id="comenatarios" row="3"  placeholder="Escribe tu consulta " required></textarea>
-          </div>
-          <div class="col-md-12">
-            <button type="submit" class="btn btn-warning">Enviar</button>
-          </div>
-     </form>
-</div>
-</div>
-</div>
+     
+  </div>
+  </div>
+  </div>
+</section>
 

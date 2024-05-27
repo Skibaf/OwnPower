@@ -1,17 +1,18 @@
 <%= search_form_for q, url: :lessons do |form| %>
   <div class="row">
-    <div class="col-lg-3 p-3">
+    <div class="col-lg-3 p-2">
       <div class="form-group">
         <%= form.label :dia %>
         <%= form.date_field :dia_gteq, class: "form-control" %>
       </div>
     </div>
-    <div class="col-lg-5 p-3">
+    <div class="col-lg-5 p-2">
       <div class="form-group">
         <%= form.label :category_title_cont, "Buscar por categoria:" %>
         <%= form.text_field :category_title_cont, class: "form-control" %>
       </div>
     </div>
+    
     <div class="col-lg-4 d-flex align-items-end justify-content-end">
       <div class="form-group">
         <%= form.submit "Buscar", class: "btn btn-warning me-2" %>

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "reservaciones@OwnPower.com"
+  default from: "info@OwnPower.com"
   layout "mailer"
 end

@@ -18,13 +18,16 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    h1 {
-      color: #333;
-      margin-top: 0;
+    h2 {
+      background-color: #ffc107;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      color: #212529;
     }
     h3 {
-      color: #777;
-      margin-top: 10px;
+      color: #333;
+      margin-top: 0;
     }
     p {
       color: #555;
@@ -42,36 +45,41 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 style="text-align: center;">Bienvenido a OwnPower</h1>
-    <h3>Hola <%= @user.username %>,</h3>
-    <p>Gracias por reservar en nuestra aplicación.</p>
-    <p><strong>ID de reserva:</strong> <%= @reservation.id %></p>
-    <p><strong>ID de la lección:</strong> <%= @reservation.lesson.id %></p>
-    <p><strong>Profesor de la lección:</strong> <%= @reservation.lesson.coach.email %></p>
-    <p><strong>Día de la lección:</strong> <%= @reservation.lesson.dia %></p>
-    <p><strong>Hora de inicio:</strong> <%= @reservation.lesson.inicio %></p>
-    <p><strong>Estado de la reserva:</strong> 
-      <% if @reservation.status == 'Pendiente' %>
-        <span class="red-text"><%= @reservation.status %></span>
-      <% else %>
-        <%= @reservation.status %>
-      <% end %>
-    </p>
-    <p><strong>Método de pago:</strong> 
-      <% if @reservation.status == 'Pendiente' %>
-        <span class="red-text"><%= @reservation.payment %></span>
-      <% else %>
-        <%= @reservation.payment %>
-      <% end %>
-    </p>
-
-    <div class="highlight">
+  <div class="container mt-5">
+    <h2>OwnPower - Confirmacion reserva</h2>
+    <div class="card">
+      <div class="card-body">
+        <h3>Hola <%= @user.username %>,</h3>
+        <p>Gracias por reservar en nuestra aplicación.</p>
+        <div class="mensaje mt-4">
+          <p><strong>ID de reserva:</strong> <%= @reservation.id %></p>
+          <p><strong>ID de la clase:</strong> <%= @reservation.lesson.id %></p>
+          <p><strong>Profesor :</strong> <%= @reservation.lesson.coach.email %></p>
+          <p><strong>Día de la clase:</strong> <%= @reservation.lesson.dia %></p>
+          <p><strong>Hora de inicio:</strong> <%= @reservation.lesson.inicio %></p>
+          <p><strong>Estado de la reserva:</strong> 
+            <% if @reservation.status == 'Pendiente' %>
+              <span class="red-text"><%= @reservation.status %></span>
+            <% else %>
+              <%= @reservation.status %>
+            <% end %>
+          </p>
+          <p><strong>Método de pago:</strong> 
+            <% if @reservation.status == 'Pendiente' %>
+              <span class="red-text"><%= @reservation.payment %></span>
+            <% else %>
+              <%= @reservation.payment %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="highlight mt-4">
       <p><strong>Recuerda:</strong></p>
       <p>El compromiso cuando haces una reserva.</p>
       <p>En caso de lluvia deberás acordar con tu profesor cómo recuperar la clase.</p>
     </div>
   </div>
+  
 </body>
 </html>
-
