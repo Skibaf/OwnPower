@@ -1,6 +1,6 @@
 ---
 engine_version: 0.4.26
-file_version: 2024-05-16 22:09:03.559865000 Z
+file_version: 2024-06-06 22:57:56.448959000 Z
 resources:
 - name: category
   preferences:
@@ -10,10 +10,15 @@ resources:
   preferences:
     display_name: Clases
   updated_at: 2024-04-20 17:35:48.238883000 +00:00
+- name: orderable
+  preferences:
+    visible: false
+  updated_at: 2024-06-06 22:57:56.448959000 +00:00
 - name: payment
   preferences:
     display_name: Pagos
-  updated_at: 2024-04-20 17:36:03.703488000 +00:00
+    visible: false
+  updated_at: 2024-06-06 22:57:48.821911000 +00:00
 - name: reservation
   preferences:
     display_name: Reservaciones
